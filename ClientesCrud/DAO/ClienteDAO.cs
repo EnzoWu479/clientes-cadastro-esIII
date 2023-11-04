@@ -2,58 +2,51 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ClientesCrud.Context;
 using ClientesCrud.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Npgsql;
 
 namespace ClientesCrud.DAO
 {
     public class ClienteDAO : DAO
     {
-        public ClienteDAO(NpgsqlConnection _connection) : base(_connection)
+        public ClienteDAO(ClienteContext context) : base(context)
         {
         }
 
         public override void Alterar(EntidadeDominio entidade)
         {
-            throw new NotImplementedException();
+            Cliente cliente = (Cliente)entidade;
+            Context.Clientes.Update(cliente);
+            Context.SaveChanges();
         }
 
-        public override List<EntidadeDominio> Consultar()
+        public override EntidadeDominio[] Consultar()
         {
-            throw new NotImplementedException();
+            var list = Context.Clientes.ToList();
+            
+            
+            return list.ToArray();
         }
 
-        public override EntidadeDominio Consultar(string id)
+        public override EntidadeDominio? Consultar(long id)
         {
-            throw new NotImplementedException();
+            return Context.Clientes.Find(id);
         }
 
-        public override void Excluir(EntidadeDominio entidade)
+        public override void Excluir(long id)
         {
-            throw new NotImplementedException();
+            var cliente = Context.Clientes.Find(id) ?? throw new Exception("Cliente não encontrado");
+            Context.Clientes.Remove(cliente);
+            Context.SaveChanges();
         }
 
         public override void Salvar(EntidadeDominio entidade)
         {
             Cliente cliente = (Cliente)entidade;
-
-            string sql = "INSERT INTO clientes (nome, cpf, email, telefone, data_nascimento) VALUES (@nome, @cpf, @email,"
-                         + " @telefone, @data_nascimento)";
-
-            NpgsqlCommand command = new(sql, connection);
-
-            command.Parameters.AddWithValue("@nome", cliente.Nome);
-            command.Parameters.AddWithValue("@cpf", cliente.Cpf);
-            command.Parameters.AddWithValue("@email",
-                cliente.Email);
-            command.Parameters.AddWithValue("@telefone", cliente.Telefone);
-            command.Parameters.AddWithValue("@data_nascimento", cliente.DataNascimento);
-
+            Context.Add(cliente);
+            Context.SaveChanges();
         }
-
-        private string GetQueryEndereco(Endereco endereco) {
-            return "INSERT INTO enderecos (cliente_id, logradouro, numero, bairro, cidade, estado, cep) VALUES (@cliente_id, @logradouro, @numero, @bairro, @cidade, @estado, @cep)";
-        }
-        
     }
 }

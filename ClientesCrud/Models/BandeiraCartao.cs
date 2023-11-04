@@ -7,11 +7,18 @@ namespace ClientesCrud.Models
 {
     public class BandeiraCartao : EntidadeDominio
     {
-        public BandeiraCartao(string _nome)
+        public BandeiraCartao(long id, string nome) : base(id)
         {
-            this.Nome = _nome;
+            this.Nome = nome;
         }
+        /// <summary> 
+        /// Empty constructor for EF
+        public BandeiraCartao()
+        {
+
+        }
+        /// </summary>
         public string Nome { get; set; }
-        
+
     }
 }

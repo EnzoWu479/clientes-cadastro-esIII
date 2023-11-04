@@ -1,0 +1,8 @@
+{
+  "name": "@ecommerce/shared",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "author": "EnzoWu479",
+  "license": "MIT",
+  "private": true
+}

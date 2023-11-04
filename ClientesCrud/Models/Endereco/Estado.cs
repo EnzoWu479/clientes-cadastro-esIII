@@ -5,14 +5,21 @@ using System.Threading.Tasks;
 
 namespace ClientesCrud.Models
 {
-    public class Estado
+    public class Estado : EntidadeDominio
     {
-        public Estado(string _nome, string _sigla, Pais _pais)
+        public Estado(long id, string nome, string sigla, Pais pais) : base(id)
         {
-            this.Nome = _nome;
-            this.Sigla = _sigla;
-            this.Pais = _pais;
+            this.Nome = nome;
+            this.Sigla = sigla;
+            this.Pais = pais;
         }
+        /// <summary> 
+        /// Empty constructor for EF
+        public Estado()
+        {
+
+        }
+        /// </summary>
         public string Nome { get; set; }
         public string Sigla { get; set; } 
         public Pais Pais { get; set; }  

@@ -108,3 +108,8 @@ d:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud.Testes\obj\Debug\
 d:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud.Testes\obj\Debug\net7.0\ClientesCrud.Testes.pdb
 d:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud.Testes\obj\Debug\net7.0\ClientesCrud.Testes.genruntimeconfig.cache
 d:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud.Testes\obj\Debug\net7.0\ref\ClientesCrud.Testes.dll
+d:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud.Testes\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+d:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud.Testes\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+d:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud.Testes\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+d:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud.Testes\bin\Debug\net7.0\Npgsql.dll
+d:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud.Testes\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll

@@ -8,11 +8,11 @@ namespace ClientesCrud.Facade
 {
     public interface IFacade
     {
-        public string Salvar(EntidadeDominio entidade);
-        public string Alterar(EntidadeDominio entidade);
-        public string Excluir(EntidadeDominio entidade);
-        public List<EntidadeDominio> Consultar();
-        public EntidadeDominio Consultar(string id);
-        
+        public void Salvar(EntidadeDominio entidade);
+        public void Alterar(EntidadeDominio entidade);
+        public void Excluir(long id);
+        public EntidadeDominio[] Consultar(string nameOfEntidade);
+        public EntidadeDominio? Consultar(long id, string nameOfEntidade);
+
     }
 }

@@ -5,19 +5,25 @@ using System.Threading.Tasks;
 
 namespace ClientesCrud.Models
 {
-    public class Endereco
+    public class Endereco : EntidadeDominio
     {
-        public Endereco(TipoLogradouro _TipoLogradouro, string _Logradouro, string _Numero, string _Observacoes, string _Bairro, Cidade _Cidade, Pais _Pais, string _Cep)
+        public Endereco(long id, TipoLogradouro TipoLogradouro, string Logradouro, string Numero, string Observacoes, string Bairro, Cidade Cidade, string Cep) : base(id)
         {
-            this.TipoLogradouro = _TipoLogradouro;
-            this.Logradouro = _Logradouro;
-            this.Numero = _Numero;
-            this.Observacoes = _Observacoes;
-            this.Bairro = _Bairro;
-            this.Cidade = _Cidade;
-            this.Pais = _Pais;
-            this.Cep = _Cep;
+            this.TipoLogradouro = TipoLogradouro;
+            this.Logradouro = Logradouro;
+            this.Numero = Numero;
+            this.Observacoes = Observacoes;
+            this.Bairro = Bairro;
+            this.Cidade = Cidade;
+            this.Cep = Cep;
         }
+        /// <summary> 
+        /// Empty constructor for EF
+        public Endereco()
+        {
+
+        }
+        /// </summary>
         public string Numero { get; set; }
         public string Observacoes { get; set; }
         public string Bairro { get; set; }
@@ -25,6 +31,5 @@ namespace ClientesCrud.Models
         public string Logradouro { get; set; }
         public TipoLogradouro TipoLogradouro { get; set; }
         public Cidade Cidade { get; set; }
-        public Pais Pais { get; set; }
     }
 }

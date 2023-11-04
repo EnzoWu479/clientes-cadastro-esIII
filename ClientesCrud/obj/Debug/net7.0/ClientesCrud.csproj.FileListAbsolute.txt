@@ -39,3 +39,5 @@ d:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\obj\Debug\net7.0\
 d:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\obj\Debug\net7.0\ClientesCrud.pdb
 d:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\obj\Debug\net7.0\ClientesCrud.genruntimeconfig.cache
 d:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\obj\Debug\net7.0\ref\ClientesCrud.dll
+D:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\bin\Debug\net7.0\Npgsql.dll
+D:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll

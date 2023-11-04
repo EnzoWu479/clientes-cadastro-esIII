@@ -7,11 +7,18 @@ namespace ClientesCrud.Models
 {
     public class Telefone : EntidadeDominio
     {
-        public Telefone(string _ddd, string _numero)
+        public Telefone(long id, string ddd, string numero) : base(id)
         {
-            this.Ddd = _ddd;
-            this.Numero = _numero;
+            this.Ddd = ddd;
+            this.Numero = numero;
         }
+        /// <summary> 
+        /// Empty constructor for EF
+        public Telefone()
+        {
+
+        }
+        /// </summary>
         public string Ddd { get; set; }
         public string Numero { get; set; }
 

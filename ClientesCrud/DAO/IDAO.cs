@@ -10,8 +10,8 @@ namespace ClientesCrud.DAO
     {
         public void Salvar(EntidadeDominio entidade);
         public void Alterar(EntidadeDominio entidade);
-        public void Excluir(EntidadeDominio entidade);
-        public List<EntidadeDominio> Consultar();
-        public EntidadeDominio Consultar(string id);
+        public void Excluir(long id);
+        public EntidadeDominio[] Consultar();
+        public EntidadeDominio? Consultar(long id);
     }
 }

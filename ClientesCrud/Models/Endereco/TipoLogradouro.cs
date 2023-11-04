@@ -5,12 +5,19 @@ using System.Threading.Tasks;
 
 namespace ClientesCrud.Models
 {
-    public class TipoLogradouro
+    public class TipoLogradouro : EntidadeDominio
     {
-        public TipoLogradouro(string _nome)
+        public TipoLogradouro(long id, string nome) : base(id)
         {
-            this.Nome = _nome;
+            this.Nome = nome;
         }
+        /// <summary> 
+        /// Empty constructor for EF
+        public TipoLogradouro()
+        {
+
+        }
+        /// </summary>
         public string Nome { get; set; }
     }
 }

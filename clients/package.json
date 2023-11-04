@@ -5,10 +5,13 @@
   "author": "EnzoWu479",
   "license": "MIT",
   "private": true,
-  
   "workspaces": {
     "packages": [
       "packages/*"
     ]
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "@ecommerce/eslint-config": "*"
   }
 }
