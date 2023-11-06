@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using ClientesCrud.Models;
 using Validators;
 
-namespace ClientesCrud.Validators
+namespace ClientesCrud.Strategy
 {
-    public class CPFValidator : IValidatorStrategy
+    public class CPFValidator : IStrategy
     {
         public string? Processar(EntidadeDominio entidade)
         {
@@ -19,7 +19,7 @@ namespace ClientesCrud.Validators
                 return "CPF deve ter 11 dígitos";
             }
 
-            cpf = cpf.Replace(".", "").Replace("-", "");  
+            cpf = cpf.Replace(".", "").Replace("-", "");
 
             // Checar se não são sequências inválidas comuns
             if (cpf.Equals("00000000000") ||
@@ -62,8 +62,8 @@ namespace ClientesCrud.Validators
             if (cpf[10] != resto + '0')
                 return "CPF inválido";
 
-            return null;  
-           
+            return null;
+
 
 
         }

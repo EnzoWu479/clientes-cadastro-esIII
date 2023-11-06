@@ -74,6 +74,9 @@ namespace ClientesCrud.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<bool>("Preferencial")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Validade")
                         .IsRequired()
                         .HasColumnType("text");
@@ -142,10 +145,6 @@ namespace ClientesCrud.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Senha")
                         .IsRequired()
                         .HasColumnType("text");
 

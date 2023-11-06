@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ClientesCrud.Context;
 using ClientesCrud.DAO;
 using ClientesCrud.Models;
+using ClientesCrud.Strategy;
 using Npgsql;
 using Validators;
 
@@ -13,17 +14,20 @@ namespace ClientesCrud.Facade
 {
     public class Facade : IFacade
     {
-        private readonly Dictionary<string, List<IValidatorStrategy>> _validators;
+        private readonly Dictionary<string, List<IStrategy>> _validators;
         private readonly Dictionary<string, IDAO> _daos;
 
         public Facade(ClienteContext context)
         {
-            _validators = new Dictionary<string, List<IValidatorStrategy>>();
+            _validators = new Dictionary<string, List<IStrategy>>();
             _daos = new Dictionary<string, IDAO>();
 
-            List<IValidatorStrategy> validatorsCliente = new();
+            List<IStrategy> validatorsCliente = new();
 
-            // validatorsCliente.Add(new )
+            validatorsCliente.Add(new ClienteValidator());
+            validatorsCliente.Add(new CPFValidator());
+            validatorsCliente.Add(new EnderecoMinValidator());
+            validatorsCliente.Add(new EnderecoValidator());
 
             _validators.Add(nameof(Cliente), validatorsCliente);
 
@@ -33,11 +37,11 @@ namespace ClientesCrud.Facade
         public void Alterar(EntidadeDominio entidade)
         {
             IDAO dao = _daos[entidade.GetType().Name];
-            List<IValidatorStrategy> validators = _validators[entidade.GetType().Name];
+            List<IStrategy> validators = _validators[entidade.GetType().Name];
 
             StringBuilder sb = new StringBuilder();
 
-            foreach (IValidatorStrategy validator in validators)
+            foreach (IStrategy validator in validators)
             {
                 string mensagem = validator.Processar(entidade);
 
@@ -73,11 +77,11 @@ namespace ClientesCrud.Facade
         public void Salvar(EntidadeDominio entidade)
         {
             IDAO dao = _daos[entidade.GetType().Name];
-            List<IValidatorStrategy> validators = _validators[entidade.GetType().Name];
+            List<IStrategy> validators = _validators[entidade.GetType().Name];
 
             StringBuilder sb = new StringBuilder();
 
-            foreach (IValidatorStrategy validator in validators)
+            foreach (IStrategy validator in validators)
             {
                 string mensagem = validator.Processar(entidade);
 

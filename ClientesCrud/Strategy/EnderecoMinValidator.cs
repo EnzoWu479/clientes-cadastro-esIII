@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using ClientesCrud.Models;
 using Validators;
 
-namespace ClientesCrud.Validators
+namespace ClientesCrud.Strategy
 {
-    public class EnderecoMinValidator : IValidatorStrategy
+    public class EnderecoMinValidator : IStrategy
     {
         public string? Processar(EntidadeDominio entidade)
         {

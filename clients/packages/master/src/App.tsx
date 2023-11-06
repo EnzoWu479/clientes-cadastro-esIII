@@ -1,9 +1,9 @@
-import { QueryClientProvider } from "@tanstack/react-query";
-import { queryClient } from "./lib/queryClient";
-import { AppRoutes } from "./routes";
-import { GlobalStyle } from "./styles/global";
-import { ThemeProvider } from "styled-components";
-import { theme } from "./styles/theme";
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from './lib/queryClient';
+import { AppRoutes } from './routes';
+import { GlobalStyle } from './styles/global';
+import { ThemeProvider } from 'styled-components';
+import { theme } from '@ecommerce/shared';
 
 function App() {
   return (

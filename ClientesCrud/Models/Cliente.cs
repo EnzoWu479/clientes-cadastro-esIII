@@ -29,12 +29,12 @@ namespace ClientesCrud.Models
         }
         /// </summary>
         public string Nome { get; set; }
-        public string Senha { get; set; }
+        public string Senha { private get; set; }
         public DateTime DataNascimento { get; set; }
         public string Cpf { get; set; }
         public string Email { get; set; }
         public Telefone Telefone { get; set; }
-        
+
         public List<Endereco> EnderecosResidencial { get; set; }
         public List<Endereco> EnderecosCobranca { get; set; }
         public List<Endereco> EnderecosEntrega { get; set; }

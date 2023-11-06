@@ -1,4 +1,3 @@
-import { img_logo } from "@/assets";
 import {
   Container,
   LogoWrapper,
@@ -6,9 +5,10 @@ import {
   NavItem,
   NavList,
   NavOption,
-  NavText,
-} from "./styles";
-import { NAVBAR_OPTIONS } from "./options";
+  NavText
+} from './styles';
+import { NAVBAR_OPTIONS } from './options';
+import { img_logo } from '@ecommerce/shared';
 
 export const Navbar = () => {
   return (
@@ -17,7 +17,7 @@ export const Navbar = () => {
         <img src={img_logo} alt="logo" />
       </LogoWrapper>
       <NavList>
-        {NAVBAR_OPTIONS.map((option) => (
+        {NAVBAR_OPTIONS.map(option => (
           <NavItem key={option.id}>
             <NavOption to={option.to}>
               <NavIconWrapper>

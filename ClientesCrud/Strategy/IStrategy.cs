@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using ClientesCrud.Models;
 namespace Validators
 {
-    public interface IValidatorStrategy
+    public interface IStrategy
     {
         public string? Processar(EntidadeDominio entidade);
     }

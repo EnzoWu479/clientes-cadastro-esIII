@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using ClientesCrud.Models;
 using Validators;
 
-namespace ClientesCrud.Validators
+namespace ClientesCrud.Strategy
 {
-    public class ClienteValidator : IValidatorStrategy
+    public class ClienteValidator : IStrategy
     {
         public string? Processar(EntidadeDominio entidade)
         {
@@ -32,7 +32,7 @@ namespace ClientesCrud.Validators
                 sb.Append("\nTelefone inválido. ");
             }
             if (sb.ToString() == "") return null;
-            
+
             return sb.ToString();
         }
     }

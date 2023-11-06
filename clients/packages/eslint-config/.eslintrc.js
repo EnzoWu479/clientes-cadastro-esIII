@@ -23,14 +23,26 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
-    'prettier/prettier': 'error'
+    'prettier/prettier': [
+      'error',
+      {
+        singleQuote: true,
+        semi: true,
+        trailingComma: 'none',
+        endOfLine: 'auto'
+      }
+    ],
+    semi: [2, 'always'],
+    camelcase: 'off',
+    'space-before-function-paren': ['none'],
+    'react/react-in-jsx-scope': 'off'
   },
   settings: {
     'import/resolver': {
       typescript: {}
     },
     react: {
-      version: 'detect',
-    },
+      version: 'detect'
+    }
   }
-}
+};

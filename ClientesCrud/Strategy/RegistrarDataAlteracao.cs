@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ClientesCrud.Models
+namespace ClientesCrud.Strategy
 {
-    public class Person
+    public class RegistrarDataAlteracao
     {
         
     }

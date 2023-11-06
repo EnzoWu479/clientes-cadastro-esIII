@@ -113,3 +113,5 @@ d:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud.Testes\bin\Debug\
 d:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud.Testes\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 d:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud.Testes\bin\Debug\net7.0\Npgsql.dll
 d:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud.Testes\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+d:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud.Testes\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
+d:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud.Testes\bin\Debug\net7.0\Microsoft.OpenApi.dll

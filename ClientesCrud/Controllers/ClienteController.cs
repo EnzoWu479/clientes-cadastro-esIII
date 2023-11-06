@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ClientesCrud.Context;
 using ClientesCrud.Facade;
 using ClientesCrud.Models;
+using ClientesCrud.utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -63,11 +64,24 @@ namespace ClientesCrud.Controllers
             }
         }
         [HttpGet]
-        public IActionResult Consultar()
+        public IActionResult Consultar(int page = 1, int limit = 10, string search = null)
         {
             try
             {
-                return Ok(_facade.Consultar(nameof(Cliente)));
+                Cliente[] clientes = (Cliente[])_facade.Consultar(nameof(Cliente));
+
+                if (search != null)
+                {
+                    clientes = clientes.Where(c => c.Nome.Contains(search)).ToArray();
+                }
+
+                int skip = (int)(page - 1) * (int)limit;
+                int take = (int)limit;
+                int total = clientes.Length;
+                int totalPage = (int)Math.Ceiling((double)total / (double)limit);
+                clientes = clientes.Skip(skip).Take(take).ToArray();
+
+                return Ok(new PaginatedResponse<Cliente>(clientes, page, totalPage, total));
             }
             catch (Exception e)
             {
