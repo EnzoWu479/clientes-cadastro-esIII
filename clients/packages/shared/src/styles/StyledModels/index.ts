@@ -63,5 +63,6 @@ export const InputWrapper = styled.label`
   display: flex;
   flex-direction: column;
   width: 100%;
+  gap: 0.25rem;
 `;
 export const InputLabelText = styled.span``;

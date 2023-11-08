@@ -8,6 +8,7 @@ import {
   InputLabelText,
   InputWrapper
 } from '../../styles/StyledModels';
+import { useTheme } from 'styled-components';
 
 export interface IOption {
   value: string;
@@ -22,6 +23,7 @@ interface Props extends ReactSelectProps {
 }
 export const Select = ({ label, error, value, ...rest }: Props) => {
   const { options } = rest;
+  const theme = useTheme();
   return (
     <InputWrapper>
       {label && <InputLabelText>{label}</InputLabelText>}
@@ -34,7 +36,11 @@ export const Select = ({ label, error, value, ...rest }: Props) => {
           }
         }
         styles={{
-          
+          control: (provided, state) => ({
+            ...provided,
+            height: '40px',
+            border: `1px solid ${theme.colors.dark2}`
+          })
         }}
       />
       <ErrorMessage>{error}</ErrorMessage>

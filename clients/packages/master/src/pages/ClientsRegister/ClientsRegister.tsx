@@ -13,7 +13,8 @@ import {
   BackButton,
   InputLabelText,
   InputText,
-  Select
+  Select,
+  Textarea
 } from '@ecommerce/shared';
 import { AiOutlinePlus } from 'react-icons/ai';
 
@@ -108,18 +109,13 @@ export const ClientsRegister = () => {
             <InputText label="Bairro" />
           </div>
           <div>
-            
+            <InputText label="Cidade" />
+            <InputText label="Estado" />
+            <InputText label="País" />
           </div>
           <div>
-            <InputText label="Observações" />
+            <Textarea label="Observações" />
           </div>
-          <InputText label="CEP" />
-          <InputText label="CEP" />
-          <InputText label="CEP" />
-          <InputText label="CEP" />
-          <InputText label="CEP" />
-          <InputText label="CEP" />
-          <InputText label="CEP" />
         </AddressContainer>
       ))}
       <SectionTitle>Endereços de cobrança</SectionTitle>

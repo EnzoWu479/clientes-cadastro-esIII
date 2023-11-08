@@ -34,6 +34,28 @@ export const AddressContainer = styled.div`
   padding: 1rem;
   margin-bottom: 1rem;
   border-radius: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  > div {
+    display: grid;
+    gap: 1rem;
+  }
+
+  div:nth-child(1) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  div:nth-child(2) {
+    grid-template-columns: 1fr 1fr;
+  }
+  div:nth-child(3) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  div:nth-child(4) {
+    grid-template-columns: 1fr;
+  }
 `;
 export const AddressAddButton = styled(ButtonModel)`
   gap: 0.5rem;
