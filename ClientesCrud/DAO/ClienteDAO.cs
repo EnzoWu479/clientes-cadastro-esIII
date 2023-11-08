@@ -24,10 +24,7 @@ namespace ClientesCrud.DAO
 
         public override EntidadeDominio[] Consultar()
         {
-            var list = Context.Clientes.ToList();
-            
-            
-            return list.ToArray();
+            return Context.Clientes.ToArray();
         }
 
         public override EntidadeDominio? Consultar(long id)
