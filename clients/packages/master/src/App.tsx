@@ -3,7 +3,7 @@ import { queryClient } from './lib/queryClient';
 import { AppRoutes } from './routes';
 import { GlobalStyle } from './styles/global';
 import { ThemeProvider } from 'styled-components';
-import { theme } from '@ecommerce/shared';
+import { theme } from '@ecommerce/ui';
 
 function App() {
   return (

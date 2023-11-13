@@ -21,9 +21,9 @@ export const TableBodyModel = styled.tbody``;
 export const TableBodyRowModel = styled.tr``;
 export const TableBodyCellModel = styled.td``;
 
-export const ButtonModel = styled.button.attrs({
-  type: 'button'
-})`
+export const ButtonModel = styled.button.attrs(props => ({
+  type: props.type || 'button'
+}))`
   border: none;
   background-color: ${({ theme }) => theme.colors.dark2};
   color: ${({ theme }) => theme.colors.white};
@@ -49,7 +49,7 @@ export const ButtonModel = styled.button.attrs({
 `;
 export const ErrorMessage = styled.span`
   color: ${({ theme }) => theme.colors.error};
-
+  font-size: 0.75rem;
   ${({ children }) =>
     children
       ? css`

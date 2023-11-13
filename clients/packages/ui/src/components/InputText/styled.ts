@@ -1,5 +1,4 @@
-import { css, styled } from 'styled-components';
-
+import styled, { css } from 'styled-components';
 
 interface InputProps {
   error?: string;
@@ -19,5 +18,8 @@ export const Input = styled.input<InputProps>`
     border-color: ${({ theme }) => theme.colors.dark1};
   }
   ${({ error }) =>
-    error && css`border-color: ${({ theme }) => theme.colors.error};`}
+    error &&
+    css`
+      border-color: ${({ theme }) => theme.colors.error};
+    `}
 `;
