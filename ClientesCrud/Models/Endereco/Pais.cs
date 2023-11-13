@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,7 +8,7 @@ namespace ClientesCrud.Models
 {
     public class Pais : EntidadeDominio
     {
-        public Pais(long id, string nome) : base(id)
+        public Pais(long? id, string nome) : base(id)
         {
             this.Nome = nome;
         }

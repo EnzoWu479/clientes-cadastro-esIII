@@ -41,3 +41,12 @@ d:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\obj\Debug\net7.0\
 d:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\obj\Debug\net7.0\ref\ClientesCrud.dll
 D:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\bin\Debug\net7.0\Npgsql.dll
 D:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\bin\Debug\net7.0\BCrypt.Net-Next.dll
+D:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll
+D:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll
+D:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
+D:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\bin\Debug\net7.0\System.Security.Permissions.dll

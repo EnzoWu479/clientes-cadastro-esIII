@@ -30,12 +30,6 @@ namespace ClientesCrud.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<DateTime>("DataAlteracao")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("DataCadastro")
-                        .HasColumnType("timestamp with time zone");
-
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("text");
@@ -56,15 +50,12 @@ namespace ClientesCrud.Migrations
                     b.Property<long>("BandeiraId")
                         .HasColumnType("bigint");
 
+                    b.Property<long?>("ClienteId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Cvv")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<DateTime>("DataAlteracao")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("DataCadastro")
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("NomeTitular")
                         .IsRequired()
@@ -85,6 +76,8 @@ namespace ClientesCrud.Migrations
 
                     b.HasIndex("BandeiraId");
 
+                    b.HasIndex("ClienteId");
+
                     b.ToTable("CartaoCredito");
                 });
 
@@ -95,12 +88,6 @@ namespace ClientesCrud.Migrations
                         .HasColumnType("bigint");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<DateTime>("DataAlteracao")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("DataCadastro")
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long>("EstadoId")
                         .HasColumnType("bigint");
@@ -114,50 +101,6 @@ namespace ClientesCrud.Migrations
                     b.HasIndex("EstadoId");
 
                     b.ToTable("Cidade");
-                });
-
-            modelBuilder.Entity("ClientesCrud.Models.Cliente", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("CartaoCreditoId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Cpf")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("DataAlteracao")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("DataCadastro")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("DataNascimento")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<long>("TelefoneId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CartaoCreditoId");
-
-                    b.HasIndex("TelefoneId");
-
-                    b.ToTable("Clientes");
                 });
 
             modelBuilder.Entity("ClientesCrud.Models.Endereco", b =>
@@ -188,12 +131,6 @@ namespace ClientesCrud.Migrations
                     b.Property<long?>("ClienteId2")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("DataAlteracao")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("DataCadastro")
-                        .HasColumnType("timestamp with time zone");
-
                     b.Property<string>("Logradouro")
                         .IsRequired()
                         .HasColumnType("text");
@@ -208,6 +145,9 @@ namespace ClientesCrud.Migrations
 
                     b.Property<long>("TipoLogradouroId")
                         .HasColumnType("bigint");
+
+                    b.Property<int>("TipoResidencia")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -232,12 +172,6 @@ namespace ClientesCrud.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<DateTime>("DataAlteracao")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("DataCadastro")
-                        .HasColumnType("timestamp with time zone");
-
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("text");
@@ -245,15 +179,32 @@ namespace ClientesCrud.Migrations
                     b.Property<long>("PaisId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("Sigla")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
 
                     b.HasIndex("PaisId");
 
                     b.ToTable("Estado");
+                });
+
+            modelBuilder.Entity("ClientesCrud.Models.Log", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("DataRegistro")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<long>("UsuarioResponsavelId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UsuarioResponsavelId");
+
+                    b.ToTable("Logs");
                 });
 
             modelBuilder.Entity("ClientesCrud.Models.Pais", b =>
@@ -263,12 +214,6 @@ namespace ClientesCrud.Migrations
                         .HasColumnType("bigint");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<DateTime>("DataAlteracao")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("DataCadastro")
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -286,12 +231,6 @@ namespace ClientesCrud.Migrations
                         .HasColumnType("bigint");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<DateTime>("DataAlteracao")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("DataCadastro")
-                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Ddd")
                         .IsRequired()
@@ -314,12 +253,6 @@ namespace ClientesCrud.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<DateTime>("DataAlteracao")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("DataCadastro")
-                        .HasColumnType("timestamp with time zone");
-
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("text");
@@ -329,6 +262,58 @@ namespace ClientesCrud.Migrations
                     b.ToTable("TipoLogradouro");
                 });
 
+            modelBuilder.Entity("ClientesCrud.Models.Usuario", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Usuario");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Usuario");
+
+                    b.UseTphMappingStrategy();
+                });
+
+            modelBuilder.Entity("ClientesCrud.Models.Cliente", b =>
+                {
+                    b.HasBaseType("ClientesCrud.Models.Usuario");
+
+                    b.Property<string>("Cpf")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("DataNascimento")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<long>("TelefoneId")
+                        .HasColumnType("bigint");
+
+                    b.HasIndex("TelefoneId");
+
+                    b.HasDiscriminator().HasValue("Cliente");
+                });
+
             modelBuilder.Entity("ClientesCrud.Models.CartaoCredito", b =>
                 {
                     b.HasOne("ClientesCrud.Models.BandeiraCartao", "Bandeira")
@@ -336,6 +321,10 @@ namespace ClientesCrud.Migrations
                         .HasForeignKey("BandeiraId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("ClientesCrud.Models.Cliente", null)
+                        .WithMany("CartaoCredito")
+                        .HasForeignKey("ClienteId");
 
                     b.Navigation("Bandeira");
                 });
@@ -349,25 +338,6 @@ namespace ClientesCrud.Migrations
                         .IsRequired();
 
                     b.Navigation("Estado");
-                });
-
-            modelBuilder.Entity("ClientesCrud.Models.Cliente", b =>
-                {
-                    b.HasOne("ClientesCrud.Models.CartaoCredito", "CartaoCredito")
-                        .WithMany()
-                        .HasForeignKey("CartaoCreditoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ClientesCrud.Models.Telefone", "Telefone")
-                        .WithMany()
-                        .HasForeignKey("TelefoneId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CartaoCredito");
-
-                    b.Navigation("Telefone");
                 });
 
             modelBuilder.Entity("ClientesCrud.Models.Endereco", b =>
@@ -412,8 +382,32 @@ namespace ClientesCrud.Migrations
                     b.Navigation("Pais");
                 });
 
+            modelBuilder.Entity("ClientesCrud.Models.Log", b =>
+                {
+                    b.HasOne("ClientesCrud.Models.Usuario", "UsuarioResponsavel")
+                        .WithMany()
+                        .HasForeignKey("UsuarioResponsavelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UsuarioResponsavel");
+                });
+
             modelBuilder.Entity("ClientesCrud.Models.Cliente", b =>
                 {
+                    b.HasOne("ClientesCrud.Models.Telefone", "Telefone")
+                        .WithMany()
+                        .HasForeignKey("TelefoneId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Telefone");
+                });
+
+            modelBuilder.Entity("ClientesCrud.Models.Cliente", b =>
+                {
+                    b.Navigation("CartaoCredito");
+
                     b.Navigation("EnderecosCobranca");
 
                     b.Navigation("EnderecosEntrega");

@@ -7,11 +7,12 @@ using Validators;
 
 namespace ClientesCrud.Strategy
 {
-    public class RegistrarDataCadastro : IStrategy
+    public class EncriptarSenha : IStrategy
     {
         public string? Processar(EntidadeDominio entidade)
         {
-            entidade.DataCadastro = DateTime.Now;
+            Usuario usuario = (Usuario)entidade;
+            usuario.Senha = BCrypt.Net.BCrypt.HashPassword(usuario.Senha);
             return null;
         }
     }

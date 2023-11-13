@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ClientesCrud.Context;
+using ClientesCrud.Filter;
 using ClientesCrud.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Npgsql;
@@ -22,9 +23,10 @@ namespace ClientesCrud.DAO
             Context.SaveChanges();
         }
 
-        public override EntidadeDominio[] Consultar()
+        public override EntidadeDominio[] Consultar(PaginationFilter paginationFilter)
         {
-            return Context.Clientes.ToArray();
+            return Context.Clientes.Skip((paginationFilter.PageNumber - 1) * paginationFilter.PageSize)
+                .Take(paginationFilter.PageSize).ToArray();
         }
 
         public override EntidadeDominio? Consultar(long id)

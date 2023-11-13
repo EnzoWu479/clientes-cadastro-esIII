@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ClientesCrud.Context;
+using ClientesCrud.Filter;
 using ClientesCrud.Models;
 using Npgsql;
 
@@ -17,7 +18,7 @@ namespace ClientesCrud.DAO
         }
 
         public abstract void Alterar(EntidadeDominio entidade);
-        public abstract EntidadeDominio[] Consultar();
+        public abstract EntidadeDominio[] Consultar(PaginationFilter paginationFilter);
         public abstract EntidadeDominio? Consultar(long id);
         public abstract void Excluir(long id);
         public abstract void Salvar(EntidadeDominio entidade);

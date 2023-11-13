@@ -7,7 +7,7 @@ namespace ClientesCrud.Models
 {
     public class CartaoCredito : EntidadeDominio
     {
-        public CartaoCredito(long id, string numero, string nomeTitular, string validade, string cvv, BandeiraCartao bandeira, bool preferencial) : base(id)
+        public CartaoCredito(long? id, string numero, string nomeTitular, string validade, string cvv, BandeiraCartao bandeira, bool preferencial) : base(id)
         {
             this.Numero = numero;
             this.NomeTitular = nomeTitular;

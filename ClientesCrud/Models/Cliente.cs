@@ -6,15 +6,12 @@ using System.Threading.Tasks;
 
 namespace ClientesCrud.Models
 {
-    public class Cliente : EntidadeDominio
+    public class Cliente : Usuario
     {
-        public Cliente(long? id, string nome, string senha, DateTime dataNascimento, string cpf, string email, Telefone telefone, List<Endereco> enderecosResidencial, List<Endereco> enderecosCobranca, List<Endereco> enderecosEntrega, CartaoCredito cartaoCredito) : base(id)
+        public Cliente(long? id, string nome, string senha, DateTime dataNascimento, string cpf, string email, Telefone telefone, List<Endereco> enderecosResidencial, List<Endereco> enderecosCobranca, List<Endereco> enderecosEntrega, List<CartaoCredito> cartaoCredito) : base(id, nome, senha, email)
         {
-            this.Nome = nome;
-            this.Senha = senha;
             this.DataNascimento = dataNascimento;
             this.Cpf = cpf;
-            this.Email = email;
             this.Telefone = telefone;
             this.EnderecosResidencial = enderecosResidencial;
             this.EnderecosCobranca = enderecosCobranca;
@@ -28,16 +25,13 @@ namespace ClientesCrud.Models
 
         }
         /// </summary>
-        public string Nome { get; set; }
-        public string Senha { private get; set; }
         public DateTime DataNascimento { get; set; }
         public string Cpf { get; set; }
-        public string Email { get; set; }
         public Telefone Telefone { get; set; }
 
         public List<Endereco> EnderecosResidencial { get; set; }
         public List<Endereco> EnderecosCobranca { get; set; }
         public List<Endereco> EnderecosEntrega { get; set; }
-        public CartaoCredito CartaoCredito { get; set; }
+        public List<CartaoCredito> CartaoCredito { get; set; }
     }
 }

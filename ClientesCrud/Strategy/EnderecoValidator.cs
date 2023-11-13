@@ -61,6 +61,10 @@ namespace ClientesCrud.Strategy
             {
                 sb.Append($"CEP do endereço {tipoEndereco} não pode ser vazio");
             }
+            if (endereco.TipoResidencia == null)
+            {
+                sb.Append($"Tipo de residência do endereço {tipoEndereco} não pode ser vazio");
+            }
             if (endereco.Cidade == null || endereco.Cidade.Nome == null || endereco.Cidade.Nome == "")
             {
                 sb.Append($"Cidade do endereço {tipoEndereco} não pode ser vazio");

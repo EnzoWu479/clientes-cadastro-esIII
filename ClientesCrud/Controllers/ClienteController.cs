@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ClientesCrud.Context;
 using ClientesCrud.Facade;
+using ClientesCrud.Filter;
 using ClientesCrud.Models;
 using ClientesCrud.utils;
 using Microsoft.AspNetCore.Mvc;
@@ -25,9 +26,79 @@ namespace ClientesCrud.Controllers
         [HttpPost]
         public IActionResult Cadastrar(Cliente cliente)
         {
+
+            Telefone newTelefone = new(null, cliente.Telefone.Ddd, cliente.Telefone.Numero);
+
+            List<Endereco> enderecosResidencial = new List<Endereco>();
+            List<Endereco> enderecosCobranca = new List<Endereco>();
+            List<Endereco> enderecosEntrega = new List<Endereco>();
+            List<CartaoCredito> cartaoCredito = new List<CartaoCredito>();
+
+            foreach (Endereco endereco in cliente.EnderecosResidencial)
+            {
+                Pais pais = new Pais(null, endereco.Cidade.Estado.Pais.Nome);
+                Estado estado = new Estado(null, endereco.Cidade.Estado.Nome, pais);
+                Cidade cidade = new Cidade(null, endereco.Cidade.Nome, estado);
+                enderecosResidencial.Add(new Endereco(
+                    null,
+                    endereco.TipoLogradouro,
+                    endereco.Logradouro,
+                    endereco.Numero,
+                    endereco.Observacoes,
+                    endereco.Bairro,
+                    cidade,
+                    endereco.TipoResidencia,
+                    endereco.Cep
+                ));
+            }
+
+            foreach (Endereco endereco in cliente.EnderecosCobranca)
+            {
+                Pais pais = new Pais(null, endereco.Cidade.Estado.Pais.Nome);
+                Estado estado = new Estado(null, endereco.Cidade.Estado.Nome, pais);
+                Cidade cidade = new Cidade(null, endereco.Cidade.Nome, estado);
+                enderecosCobranca.Add(new Endereco(
+                    null,
+                    endereco.TipoLogradouro,
+                    endereco.Logradouro,
+                    endereco.Numero,
+                    endereco.Observacoes,
+                    endereco.Bairro,
+                    cidade,
+                    endereco.TipoResidencia,
+                    endereco.Cep
+                ));
+            }
+
+            foreach (Endereco endereco in cliente.EnderecosEntrega)
+            {
+                Pais pais = new Pais(null, endereco.Cidade.Estado.Pais.Nome);
+                Estado estado = new Estado(null, endereco.Cidade.Estado.Nome, pais);
+                Cidade cidade = new Cidade(null, endereco.Cidade.Nome, estado);
+                enderecosEntrega.Add(new Endereco(
+                    null,
+                    endereco.TipoLogradouro,
+                    endereco.Logradouro,
+                    endereco.Numero,
+                    endereco.Observacoes,
+                    endereco.Bairro,
+                    cidade,
+                    endereco.TipoResidencia,
+                    endereco.Cep
+                ));
+            }
+
+            foreach (CartaoCredito cartao in cliente.CartaoCredito)
+            {
+                cartaoCredito.Add(new CartaoCredito(null, cartao.Numero, cartao.NomeTitular, cartao.Validade, cartao.Cvv, cartao.Bandeira, cartao.Preferencial));
+            }
+
+
+
+            Cliente newCliente = new(null, cliente.Nome, cliente.Senha, cliente.DataNascimento, cliente.Cpf, cliente.Email, newTelefone, enderecosResidencial, enderecosCobranca, enderecosEntrega, cartaoCredito);
             try
             {
-                _facade.Salvar(cliente);
+                _facade.Salvar(newCliente);
                 return Ok();
             }
             catch (Exception e)
@@ -39,6 +110,75 @@ namespace ClientesCrud.Controllers
         [HttpPut]
         public IActionResult Alterar(Cliente cliente)
         {
+            Telefone newTelefone = new(null, cliente.Telefone.Ddd, cliente.Telefone.Numero);
+
+            List<Endereco> enderecosResidencial = new List<Endereco>();
+            List<Endereco> enderecosCobranca = new List<Endereco>();
+            List<Endereco> enderecosEntrega = new List<Endereco>();
+            List<CartaoCredito> cartaoCredito = new List<CartaoCredito>();
+
+            foreach (Endereco endereco in cliente.EnderecosResidencial)
+            {
+                Pais pais = new Pais(endereco.Cidade.Estado.Pais.Id, endereco.Cidade.Estado.Pais.Nome);
+                Estado estado = new Estado(null, endereco.Cidade.Estado.Nome, pais);
+                Cidade cidade = new Cidade(null, endereco.Cidade.Nome, estado);
+                enderecosResidencial.Add(new Endereco(
+                    null,
+                    endereco.TipoLogradouro,
+                    endereco.Logradouro,
+                    endereco.Numero,
+                    endereco.Observacoes,
+                    endereco.Bairro,
+                    cidade,
+                    endereco.TipoResidencia,
+                    endereco.Cep
+                ));
+            }
+
+            foreach (Endereco endereco in cliente.EnderecosCobranca)
+            {
+                Pais pais = new Pais(null, endereco.Cidade.Estado.Pais.Nome);
+                Estado estado = new Estado(null, endereco.Cidade.Estado.Nome, pais);
+                Cidade cidade = new Cidade(null, endereco.Cidade.Nome, estado);
+                enderecosCobranca.Add(new Endereco(
+                    null,
+                    endereco.TipoLogradouro,
+                    endereco.Logradouro,
+                    endereco.Numero,
+                    endereco.Observacoes,
+                    endereco.Bairro,
+                    cidade,
+                    endereco.TipoResidencia,
+                    endereco.Cep
+                ));
+            }
+
+            foreach (Endereco endereco in cliente.EnderecosEntrega)
+            {
+                Pais pais = new Pais(null, endereco.Cidade.Estado.Pais.Nome);
+                Estado estado = new Estado(null, endereco.Cidade.Estado.Nome, pais);
+                Cidade cidade = new Cidade(null, endereco.Cidade.Nome, estado);
+                enderecosEntrega.Add(new Endereco(
+                    null,
+                    endereco.TipoLogradouro,
+                    endereco.Logradouro,
+                    endereco.Numero,
+                    endereco.Observacoes,
+                    endereco.Bairro,
+                    cidade,
+                    endereco.TipoResidencia,
+                    endereco.Cep
+                ));
+            }
+
+            foreach (CartaoCredito cartao in cliente.CartaoCredito)
+            {
+                cartaoCredito.Add(new CartaoCredito(null, cartao.Numero, cartao.NomeTitular, cartao.Validade, cartao.Cvv, cartao.Bandeira, cartao.Preferencial));
+            }
+
+
+
+            Cliente newCliente = new(null, cliente.Nome, cliente.Senha, cliente.DataNascimento, cliente.Cpf, cliente.Email, newTelefone, enderecosResidencial, enderecosCobranca, enderecosEntrega, cartaoCredito);
             try
             {
                 _facade.Alterar(cliente);
@@ -66,9 +206,10 @@ namespace ClientesCrud.Controllers
         [HttpGet]
         public IActionResult Consultar(int page = 1, int limit = 10, string search = null)
         {
+            PaginationFilter pagination = new(page, limit);
             try
             {
-                Cliente[] clientes = (Cliente[])_facade.Consultar(nameof(Cliente));
+                Cliente[] clientes = (Cliente[])_facade.Consultar(nameof(Cliente), pagination);
 
                 if (search != null)
                 {

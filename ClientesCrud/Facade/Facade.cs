@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ClientesCrud.Context;
 using ClientesCrud.DAO;
+using ClientesCrud.Filter;
 using ClientesCrud.Models;
 using ClientesCrud.Strategy;
 using Npgsql;
@@ -22,14 +23,17 @@ namespace ClientesCrud.Facade
             _validators = new Dictionary<string, List<IStrategy>>();
             _daos = new Dictionary<string, IDAO>();
 
-            List<IStrategy> validatorsCliente = new();
+            List<IStrategy> regrasCliente = new();
 
-            validatorsCliente.Add(new ClienteValidator());
-            validatorsCliente.Add(new CPFValidator());
-            validatorsCliente.Add(new EnderecoMinValidator());
-            validatorsCliente.Add(new EnderecoValidator());
+            regrasCliente.Add(new ClienteValidator());
+            regrasCliente.Add(new CPFValidator());
+            regrasCliente.Add(new EnderecoMinValidator());
+            regrasCliente.Add(new EnderecoValidator());
+            regrasCliente.Add(new SenhaValidator());
+            regrasCliente.Add(new EncriptarSenha());
+            regrasCliente.Add(new GerarLogTransacao(new LogDAO(context)));
 
-            _validators.Add(nameof(Cliente), validatorsCliente);
+            _validators.Add(nameof(Cliente), regrasCliente);
 
             _daos.Add(nameof(Cliente), new ClienteDAO(context));
         }
@@ -59,9 +63,9 @@ namespace ClientesCrud.Facade
             _daos[nameof(entidade)].Alterar(entidade);
         }
 
-        public EntidadeDominio[] Consultar(string nameOfEntidade)
+        public EntidadeDominio[] Consultar(string nameOfEntidade, PaginationFilter filter)
         {
-            return _daos[nameOfEntidade].Consultar();
+            return _daos[nameOfEntidade].Consultar(filter);
         }
 
         public EntidadeDominio? Consultar(long id, string nameOfEntidade)

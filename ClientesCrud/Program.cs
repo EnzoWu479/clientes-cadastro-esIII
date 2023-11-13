@@ -1,17 +1,13 @@
 using ClientesCrud.Context;
+using ClientesCrud.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+Configure configure = new(builder);
 
-builder.Services.AddDbContext<ClienteContext>(opt =>
-    opt.UseNpgsql(builder.Configuration.GetConnectionString("ConexaoPadrao")));
-
-// Add services to the container. 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+configure.ConfigureServices();
 
 var app = builder.Build();
 
@@ -21,7 +17,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
