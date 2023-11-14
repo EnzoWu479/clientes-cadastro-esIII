@@ -19,6 +19,8 @@ import { emptyAddress } from '@/validations/addressSchema';
 import { ErrorMessage, InputLabelText, InputText } from '@ecommerce/ui';
 import { emptyCartaoCredito } from '@/validations/creditCardSchema';
 import { CreditCardForm } from '../CreditCardForm/CreditCardForm';
+import { clientService } from '@/services/clientService';
+import { notifyError, notifySuccess } from '@/utils/toast';
 
 type FieldTypes = 'residencial' | 'cobranca' | 'entrega' | 'cartaoCredito';
 
@@ -29,7 +31,13 @@ export const ClientForm = () => {
     handleSubmit,
     register
   } = useForm({
-    resolver: yupResolver(clienteSchema)
+    resolver: yupResolver(clienteSchema),
+    defaultValues: {
+      enderecosCobranca: [],
+      enderecosEntrega: [],
+      enderecosResidencial: [],
+      cartaoCredito: []
+    }
   });
 
   const residencial = useFieldArray({
@@ -82,8 +90,16 @@ export const ClientForm = () => {
     }
   };
 
-  const onSubmit = handleSubmit(data => {
-    console.log(data);
+  console.log(errors);
+
+  const onSubmit = handleSubmit(async data => {
+    try {
+      await clientService.register(data);
+      notifySuccess('Cliente cadastrado com sucesso!');
+    } catch (error) {
+      notifyError('Não foi possível cadastrar o cliente');
+      console.log(error);
+    }
   });
 
   return (

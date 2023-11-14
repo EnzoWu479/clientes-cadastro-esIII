@@ -36,9 +36,6 @@ namespace ClientesCrud.Controllers
 
             foreach (Endereco endereco in cliente.EnderecosResidencial)
             {
-                Pais pais = new Pais(null, endereco.Cidade.Estado.Pais.Nome);
-                Estado estado = new Estado(null, endereco.Cidade.Estado.Nome, pais);
-                Cidade cidade = new Cidade(null, endereco.Cidade.Nome, estado);
                 enderecosResidencial.Add(new Endereco(
                     null,
                     endereco.TipoLogradouro,
@@ -46,7 +43,9 @@ namespace ClientesCrud.Controllers
                     endereco.Numero,
                     endereco.Observacoes,
                     endereco.Bairro,
-                    cidade,
+                    endereco.Cidade,
+                    endereco.Estado,
+                    endereco.Pais,
                     endereco.TipoResidencia,
                     endereco.Cep
                 ));
@@ -54,9 +53,6 @@ namespace ClientesCrud.Controllers
 
             foreach (Endereco endereco in cliente.EnderecosCobranca)
             {
-                Pais pais = new Pais(null, endereco.Cidade.Estado.Pais.Nome);
-                Estado estado = new Estado(null, endereco.Cidade.Estado.Nome, pais);
-                Cidade cidade = new Cidade(null, endereco.Cidade.Nome, estado);
                 enderecosCobranca.Add(new Endereco(
                     null,
                     endereco.TipoLogradouro,
@@ -64,7 +60,9 @@ namespace ClientesCrud.Controllers
                     endereco.Numero,
                     endereco.Observacoes,
                     endereco.Bairro,
-                    cidade,
+                    endereco.Cidade,
+                    endereco.Estado,
+                    endereco.Pais,
                     endereco.TipoResidencia,
                     endereco.Cep
                 ));
@@ -72,9 +70,6 @@ namespace ClientesCrud.Controllers
 
             foreach (Endereco endereco in cliente.EnderecosEntrega)
             {
-                Pais pais = new Pais(null, endereco.Cidade.Estado.Pais.Nome);
-                Estado estado = new Estado(null, endereco.Cidade.Estado.Nome, pais);
-                Cidade cidade = new Cidade(null, endereco.Cidade.Nome, estado);
                 enderecosEntrega.Add(new Endereco(
                     null,
                     endereco.TipoLogradouro,
@@ -82,7 +77,9 @@ namespace ClientesCrud.Controllers
                     endereco.Numero,
                     endereco.Observacoes,
                     endereco.Bairro,
-                    cidade,
+                    endereco.Cidade,
+                    endereco.Estado,
+                    endereco.Pais,
                     endereco.TipoResidencia,
                     endereco.Cep
                 ));
@@ -95,7 +92,7 @@ namespace ClientesCrud.Controllers
 
 
 
-            Cliente newCliente = new(null, cliente.Nome, cliente.Senha, cliente.DataNascimento, cliente.Cpf, cliente.Email, newTelefone, enderecosResidencial, enderecosCobranca, enderecosEntrega, cartaoCredito);
+            Cliente newCliente = new(null, cliente.Nome, cliente.Senha, new DateTime(cliente.DataNascimento.Ticks), cliente.Cpf, cliente.Email, newTelefone, enderecosResidencial, enderecosCobranca, enderecosEntrega, cartaoCredito);
             try
             {
                 _facade.Salvar(newCliente);
@@ -119,9 +116,6 @@ namespace ClientesCrud.Controllers
 
             foreach (Endereco endereco in cliente.EnderecosResidencial)
             {
-                Pais pais = new Pais(endereco.Cidade.Estado.Pais.Id, endereco.Cidade.Estado.Pais.Nome);
-                Estado estado = new Estado(null, endereco.Cidade.Estado.Nome, pais);
-                Cidade cidade = new Cidade(null, endereco.Cidade.Nome, estado);
                 enderecosResidencial.Add(new Endereco(
                     null,
                     endereco.TipoLogradouro,
@@ -129,7 +123,9 @@ namespace ClientesCrud.Controllers
                     endereco.Numero,
                     endereco.Observacoes,
                     endereco.Bairro,
-                    cidade,
+                    endereco.Cidade,
+                    endereco.Estado,
+                    endereco.Pais,
                     endereco.TipoResidencia,
                     endereco.Cep
                 ));
@@ -137,9 +133,6 @@ namespace ClientesCrud.Controllers
 
             foreach (Endereco endereco in cliente.EnderecosCobranca)
             {
-                Pais pais = new Pais(null, endereco.Cidade.Estado.Pais.Nome);
-                Estado estado = new Estado(null, endereco.Cidade.Estado.Nome, pais);
-                Cidade cidade = new Cidade(null, endereco.Cidade.Nome, estado);
                 enderecosCobranca.Add(new Endereco(
                     null,
                     endereco.TipoLogradouro,
@@ -147,7 +140,9 @@ namespace ClientesCrud.Controllers
                     endereco.Numero,
                     endereco.Observacoes,
                     endereco.Bairro,
-                    cidade,
+                    endereco.Cidade,
+                    endereco.Estado,
+                    endereco.Pais,
                     endereco.TipoResidencia,
                     endereco.Cep
                 ));
@@ -155,9 +150,6 @@ namespace ClientesCrud.Controllers
 
             foreach (Endereco endereco in cliente.EnderecosEntrega)
             {
-                Pais pais = new Pais(null, endereco.Cidade.Estado.Pais.Nome);
-                Estado estado = new Estado(null, endereco.Cidade.Estado.Nome, pais);
-                Cidade cidade = new Cidade(null, endereco.Cidade.Nome, estado);
                 enderecosEntrega.Add(new Endereco(
                     null,
                     endereco.TipoLogradouro,
@@ -165,7 +157,9 @@ namespace ClientesCrud.Controllers
                     endereco.Numero,
                     endereco.Observacoes,
                     endereco.Bairro,
-                    cidade,
+                    endereco.Cidade,
+                    endereco.Estado,
+                    endereco.Pais,
                     endereco.TipoResidencia,
                     endereco.Cep
                 ));
@@ -181,7 +175,7 @@ namespace ClientesCrud.Controllers
             Cliente newCliente = new(null, cliente.Nome, cliente.Senha, cliente.DataNascimento, cliente.Cpf, cliente.Email, newTelefone, enderecosResidencial, enderecosCobranca, enderecosEntrega, cartaoCredito);
             try
             {
-                _facade.Alterar(cliente);
+                _facade.Alterar(newCliente);
                 return Ok();
             }
             catch (Exception e)
@@ -241,6 +235,11 @@ namespace ClientesCrud.Controllers
             {
                 return BadRequest(e.Message);
             }
+        }
+        [HttpOptions]
+        public IActionResult Options()
+        {
+            return Ok();
         }
     }
 }

@@ -65,15 +65,15 @@ namespace ClientesCrud.Strategy
             {
                 sb.Append($"Tipo de residência do endereço {tipoEndereco} não pode ser vazio");
             }
-            if (endereco.Cidade == null || endereco.Cidade.Nome == null || endereco.Cidade.Nome == "")
+            if (endereco.Cidade == null || endereco.Cidade == null || endereco.Cidade == "")
             {
                 sb.Append($"Cidade do endereço {tipoEndereco} não pode ser vazio");
             }
-            if (endereco.Cidade != null && (endereco.Cidade.Estado == null || endereco.Cidade.Estado.Nome == null || endereco.Cidade.Estado.Nome == ""))
+            if (endereco.Cidade != null && (endereco.Estado == null || endereco.Estado == null || endereco.Estado == ""))
             {
                 sb.Append($"Estado do endereço {tipoEndereco} não pode ser vazio");
             }
-            if (endereco.Cidade != null && endereco.Cidade.Estado != null && (endereco.Cidade.Estado.Pais == null || endereco.Cidade.Estado.Pais.Nome == null || endereco.Cidade.Estado.Pais.Nome == ""))
+            if (endereco.Cidade != null && endereco.Cidade != null && (endereco.Pais == null || endereco.Pais == null || endereco.Pais == ""))
             {
                 sb.Append($"País do endereço {tipoEndereco} não pode ser vazio");
             }

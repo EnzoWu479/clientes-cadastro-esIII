@@ -119,16 +119,19 @@ export const AddressForm = ({ value, onChange, onDelete }: Props) => {
             label="Cidade"
             value={value?.cidade}
             onChange={e => handleChange('cidade', e.target.value)}
+            readOnly
           />
           <InputText
             label="Estado"
             value={value?.estado}
             onChange={e => handleChange('estado', e.target.value)}
+            readOnly
           />
           <InputText
             label="País"
             value={value?.pais}
             onChange={e => handleChange('pais', e.target.value)}
+            readOnly
           />
         </div>
         <div>

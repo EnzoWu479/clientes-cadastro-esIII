@@ -4,6 +4,7 @@ import { AppRoutes } from './routes';
 import { GlobalStyle } from './styles/global';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '@ecommerce/ui';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -11,6 +12,18 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <GlobalStyle />
         <AppRoutes />
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
       </QueryClientProvider>
     </ThemeProvider>
   );

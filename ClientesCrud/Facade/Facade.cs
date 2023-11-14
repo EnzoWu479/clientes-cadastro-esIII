@@ -31,7 +31,7 @@ namespace ClientesCrud.Facade
             regrasCliente.Add(new EnderecoValidator());
             regrasCliente.Add(new SenhaValidator());
             regrasCliente.Add(new EncriptarSenha());
-            regrasCliente.Add(new GerarLogTransacao(new LogDAO(context)));
+            // regrasCliente.Add(new GerarLogTransacao(new LogDAO(context)));
 
             _validators.Add(nameof(Cliente), regrasCliente);
 
@@ -51,7 +51,7 @@ namespace ClientesCrud.Facade
 
                 if (mensagem != null)
                 {
-                    sb.Append(mensagem);
+                    sb.Append(mensagem + "\n");
                 }
             }
             if (sb.Length > 0)
@@ -87,11 +87,12 @@ namespace ClientesCrud.Facade
 
             foreach (IStrategy validator in validators)
             {
+                Console.WriteLine(validator.GetType().Name);
                 string mensagem = validator.Processar(entidade);
-
+                Console.WriteLine(mensagem);
                 if (mensagem != null)
                 {
-                    sb.Append(mensagem);
+                    sb.Append(mensagem + "\n");
                 }
             }
             if (sb.Length > 0)

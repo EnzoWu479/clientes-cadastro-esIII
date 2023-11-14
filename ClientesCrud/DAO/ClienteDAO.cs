@@ -25,8 +25,7 @@ namespace ClientesCrud.DAO
 
         public override EntidadeDominio[] Consultar(PaginationFilter paginationFilter)
         {
-            return Context.Clientes.Skip((paginationFilter.PageNumber - 1) * paginationFilter.PageSize)
-                .Take(paginationFilter.PageSize).ToArray();
+            return Context.Clientes.ToArray();
         }
 
         public override EntidadeDominio? Consultar(long id)

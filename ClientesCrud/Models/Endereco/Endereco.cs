@@ -7,7 +7,7 @@ namespace ClientesCrud.Models
 {
     public class Endereco : EntidadeDominio
     {
-        public Endereco(long? id, TipoLogradouro TipoLogradouro, string Logradouro, string Numero, string Observacoes, string Bairro, Cidade Cidade, TipoResidencia tipoResidencia, string Cep) : base(id)
+        public Endereco(long? id, TipoLogradouro TipoLogradouro, string Logradouro, string Numero, string Observacoes, string Bairro, string Cidade, string Estado, string Pais, TipoResidencia tipoResidencia, string Cep) : base(id)
         {
             this.TipoLogradouro = TipoLogradouro;
             this.Logradouro = Logradouro;
@@ -15,6 +15,9 @@ namespace ClientesCrud.Models
             this.Observacoes = Observacoes;
             this.Bairro = Bairro;
             this.Cidade = Cidade;
+            this.Estado = Estado;
+            this.Pais = Pais;
+
             this.TipoResidencia = tipoResidencia;
             this.Cep = Cep;
         }
@@ -32,6 +35,8 @@ namespace ClientesCrud.Models
         public string Logradouro { get; set; }
         public TipoLogradouro TipoLogradouro { get; set; }
         public TipoResidencia TipoResidencia { get; set; }
-        public Cidade Cidade { get; set; }
+        public string Cidade { get; set; }
+        public string Estado { get; set; }
+        public string Pais { get; set; }
     }
 }

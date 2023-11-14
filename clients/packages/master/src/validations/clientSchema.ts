@@ -42,14 +42,19 @@ export const clienteSchema = yup.object().shape({
     .matches(/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/g, 'CPF inválido'),
   email: yup.string().email('Email inválido').required('Email é obrigatório'),
   telefone: telefoneSchema,
-  enderecosResidencial: yup.array().of(addressSchema),
+  enderecosResidencial: yup.array().of(addressSchema).required(),
   enderecosCobranca: yup
     .array()
     .of(addressSchema)
+    .required('Deve ter ao menos 1 endereço de cobrança')
     .min(1, 'Deve ter ao menos 1 endereço de cobrança'),
   enderecosEntrega: yup
     .array()
     .of(addressSchema)
+    .required('Deve ter ao menos 1 endereço de entrega')
     .min(1, 'Deve ter ao menos 1 endereço de entrega'),
-  cartaoCredito: yup.array().of(cartaoCreditoSchema)
+  cartaoCredito: yup
+    .array()
+    .of(cartaoCreditoSchema)
+    .required('Cartão de crédito é obrigatório')
 });

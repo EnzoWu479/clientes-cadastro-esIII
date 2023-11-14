@@ -24,6 +24,16 @@ namespace ClientesCrud.Services
 
             var key = Encoding.ASCII.GetBytes(Settings.Secret.SecretKey);
 
+            Builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: "_myAllowSpecificOrigins",
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:3000");
+                    });
+            });
+
+
             Builder.Services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
