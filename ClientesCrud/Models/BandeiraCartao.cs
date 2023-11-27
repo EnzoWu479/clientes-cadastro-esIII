@@ -18,6 +18,7 @@ namespace ClientesCrud.Models
 
         }
         /// </summary>
+        
         public string Nome { get; set; }
 
     }

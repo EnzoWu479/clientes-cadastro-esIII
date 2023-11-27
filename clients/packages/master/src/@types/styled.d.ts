@@ -1,4 +1,5 @@
-import { theme } from "@ecommerce/shared";
+
+import { theme } from "@ecommerce/ui";
 import "styled-components";
 
 declare module "styled-components" {

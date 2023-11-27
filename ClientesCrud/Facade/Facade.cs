@@ -16,30 +16,43 @@ namespace ClientesCrud.Facade
     public class Facade : IFacade
     {
         private readonly Dictionary<string, List<IStrategy>> _validators;
+        private readonly Dictionary<string, List<IStrategy>> _validatorsRegister;
         private readonly Dictionary<string, IDAO> _daos;
 
         public Facade(ClienteContext context)
         {
             _validators = new Dictionary<string, List<IStrategy>>();
+            _validatorsRegister = new Dictionary<string, List<IStrategy>>();
             _daos = new Dictionary<string, IDAO>();
 
             List<IStrategy> regrasCliente = new();
+            List<IStrategy> regrasClienteSalvar = new();
 
             regrasCliente.Add(new ClienteValidator());
+            regrasClienteSalvar.Add(new ClienteValidator());
+
             regrasCliente.Add(new CPFValidator());
+            regrasClienteSalvar.Add(new CPFValidator());
+
             regrasCliente.Add(new EnderecoMinValidator());
+            regrasClienteSalvar.Add(new EnderecoMinValidator())
+            ;
             regrasCliente.Add(new EnderecoValidator());
-            regrasCliente.Add(new SenhaValidator());
-            regrasCliente.Add(new EncriptarSenha());
+            regrasClienteSalvar.Add(new EnderecoValidator());
+            
+            regrasClienteSalvar.Add(new SenhaValidator());
+            regrasClienteSalvar.Add(new EncriptarSenha());
             // regrasCliente.Add(new GerarLogTransacao(new LogDAO(context)));
 
-            _validators.Add(nameof(Cliente), regrasCliente);
+            _validators.Add(typeof(Cliente).Name, regrasCliente);
+            _validatorsRegister.Add(typeof(Cliente).Name, regrasClienteSalvar);
 
-            _daos.Add(nameof(Cliente), new ClienteDAO(context));
+            _daos.Add(typeof(Cliente).Name, new ClienteDAO(context));
         }
 
         public void Alterar(EntidadeDominio entidade)
         {
+            Console.WriteLine(entidade.GetType().Name);
             IDAO dao = _daos[entidade.GetType().Name];
             List<IStrategy> validators = _validators[entidade.GetType().Name];
 
@@ -60,10 +73,10 @@ namespace ClientesCrud.Facade
             }
 
 
-            _daos[nameof(entidade)].Alterar(entidade);
+            _daos[entidade.GetType().Name].Alterar(entidade);
         }
 
-        public EntidadeDominio[] Consultar(string nameOfEntidade, PaginationFilter filter)
+        public (EntidadeDominio[], int) Consultar(string nameOfEntidade, GetFilters filter)
         {
             return _daos[nameOfEntidade].Consultar(filter);
         }
@@ -75,13 +88,13 @@ namespace ClientesCrud.Facade
 
         public void Excluir(long id)
         {
-            _daos[nameof(Cliente)].Excluir(id);
+            _daos[typeof(Cliente).Name].Excluir(id);
         }
 
         public void Salvar(EntidadeDominio entidade)
         {
             IDAO dao = _daos[entidade.GetType().Name];
-            List<IStrategy> validators = _validators[entidade.GetType().Name];
+            List<IStrategy> validators = _validatorsRegister[entidade.GetType().Name];
 
             StringBuilder sb = new StringBuilder();
 

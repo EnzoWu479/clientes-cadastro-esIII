@@ -5,7 +5,7 @@ import { GlobalStyle } from './styles/global';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '@ecommerce/ui';
 import { ToastContainer } from 'react-toastify';
-
+import 'react-toastify/ReactToastify.css';
 function App() {
   return (
     <ThemeProvider theme={theme}>

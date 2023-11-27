@@ -50,3 +50,9 @@ D:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\bin\Debug\net7.0\
 D:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll
 D:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll
 D:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\bin\Debug\net7.0\System.Security.Permissions.dll
+D:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\bin\Debug\net7.0\System.Web.Cors.dll
+D:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\bin\Debug\net7.0\System.Net.Http.Formatting.dll
+D:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\bin\Debug\net7.0\System.Web.Http.dll
+D:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\bin\Debug\net7.0\System.Web.Http.Cors.dll
+D:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\bin\Debug\net7.0\Newtonsoft.Json.dll
+D:\Programação\Projetos\clientes-cadastro-esIII\ClientesCrud\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll

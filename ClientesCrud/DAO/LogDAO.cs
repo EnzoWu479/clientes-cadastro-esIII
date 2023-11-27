@@ -18,10 +18,11 @@ namespace ClientesCrud.DAO
             throw new NotImplementedException();
         }
 
-        public override EntidadeDominio[] Consultar(PaginationFilter paginationFilter)
+        public override (EntidadeDominio[], int) Consultar(GetFilters filters)
         {
-            return Context.Logs.Skip((paginationFilter.PageNumber - 1) * paginationFilter.PageSize)
-                .Take(paginationFilter.PageSize).ToArray();
+            var paginationFilter = filters.paginationFilter;
+            return (Context.Logs.Skip((paginationFilter.PageNumber - 1) * paginationFilter.PageSize)
+                .Take(paginationFilter.PageSize).ToArray(), Context.Logs.Count());
         }
 
         public override EntidadeDominio? Consultar(long id)

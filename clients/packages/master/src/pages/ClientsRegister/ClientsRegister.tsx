@@ -1,4 +1,4 @@
-import { ClientForm } from '@/components/ClientForm/ClientForm';
+import { ClientForm } from '@/components/partials/Client/ClientForm/ClientForm';
 import { Title } from './styles';
 import { BackButton } from '@ecommerce/ui';
 

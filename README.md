@@ -3,7 +3,7 @@
 Projeto desenvolvido para a aula de Engenharia de Software III sob orientação do professor Rodrigo
 
 Diagrama de classes:
-https://yuml.me/enzowu479/cadastro- []cliente.svg
+https://yuml.me/enzowu479/cadastro-cliente.svg
 
 ## Padrão de arquitetura
 

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ClientesCrud.Context;
+using ClientesCrud.DTO;
 using ClientesCrud.Filter;
 using ClientesCrud.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 using Npgsql;
 
 namespace ClientesCrud.DAO
@@ -23,14 +25,38 @@ namespace ClientesCrud.DAO
             Context.SaveChanges();
         }
 
-        public override EntidadeDominio[] Consultar(PaginationFilter paginationFilter)
+        public override (EntidadeDominio[], int) Consultar(GetFilters filter)
         {
-            return Context.Clientes.ToArray();
+            var paginationFilter = filter.paginationFilter;
+            var entidadeBusca = (ClienteDTO)filter.entidadeBusca;
+
+            var query = Context.Clientes
+            .Where(c => entidadeBusca.Nome == null || c.Nome.Contains(entidadeBusca.Nome))
+            .Where(c => entidadeBusca.Cpf == null || c.Cpf.Contains(entidadeBusca.Cpf))
+            .Where(c => entidadeBusca.Email == null || c.Email.Contains(entidadeBusca.Email))
+            .Where(c => entidadeBusca.Telefone.Numero == null || c.Telefone.Numero.Contains(entidadeBusca.Telefone.Numero))
+            .Where(c => entidadeBusca.Status == null || c.Status == entidadeBusca.Status)
+            .Where(c => entidadeBusca.Genero == null || c.Genero == entidadeBusca.Genero)
+            .Where(c => entidadeBusca.DataNascimento == null || c.DataNascimento == entidadeBusca.DataNascimento);
+
+            return (query
+            .Include("Telefone")
+            .Skip((paginationFilter.PageNumber - 1) * paginationFilter.PageSize)
+            .Take(paginationFilter.PageSize)
+            .OrderBy(c => c.Id)
+            .ToArray(), query.Count());
         }
 
         public override EntidadeDominio? Consultar(long id)
         {
-            return Context.Clientes.Find(id);
+            return Context.Clientes
+            .Include("Telefone")
+            .Include(x => x.EnderecosResidencial).ThenInclude(x => x.TipoLogradouro)
+            .Include(x => x.EnderecosCobranca).ThenInclude(x => x.TipoLogradouro)
+            .Include(x => x.EnderecosEntrega).ThenInclude(x => x.TipoLogradouro)
+            .Include(x => x.CartaoCredito)
+            .ThenInclude(x => x.Bandeira)
+            .FirstOrDefault(c => c.Id == id);
         }
 
         public override void Excluir(long id)

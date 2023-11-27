@@ -1,34 +1,7 @@
 import * as yup from 'yup';
 
-export interface CidadeDTO {
-  nome: string;
-  estado: EstadoDTO;
-}
-export interface EstadoDTO {
-  nome: string;
-  sigla: string;
-  pais: PaisDTO;
-}
-export interface PaisDTO {
-  nome: string;
-}
-export interface EnderecoDTO {
-  numero: string;
-  observacoes?: string | null;
-  bairro: string;
-  cep: string;
-  logradouro: string;
-  tipoLogradouro: string;
-  tipoResidencia: string;
-  cidade: string;
-  estado: string;
-  pais: string;
-}
-export interface TipoLogradouroDTO {
-  nome: string;
-}
-
 export const addressSchema = yup.object().shape({
+  id: yup.number().nullable(),
   numero: yup.string().required('Número é obrigatório'),
   observacoes: yup.string().nullable(),
   bairro: yup.string().required('Bairro é obrigatório'),
@@ -40,7 +13,9 @@ export const addressSchema = yup.object().shape({
   estado: yup.string().required('Estado é obrigatório'),
   pais: yup.string().required('País é obrigatório')
 });
+export type EnderecoDTO = yup.InferType<typeof addressSchema>;
 export const emptyAddress = {
+  id: null,
   cep: '',
   logradouro: '',
   tipoLogradouro: '',

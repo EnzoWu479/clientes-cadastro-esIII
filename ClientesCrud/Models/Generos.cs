@@ -2,7 +2,7 @@ namespace ClientesCrud.Models
 {
     public enum Generos
     {
-        MASCULINO,
-        FEMININO
+        MASCULINO = 0,
+        FEMININO = 1
     }
 }

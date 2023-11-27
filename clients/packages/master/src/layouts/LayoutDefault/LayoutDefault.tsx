@@ -1,4 +1,4 @@
-import { Navbar } from "@/components/Navbar/Navbar";
+import { Navbar } from "@/components/partials/Navbar/Navbar";
 import { ChildContainer, Wrapper } from "./styles";
 import { Outlet } from "react-router-dom";
 

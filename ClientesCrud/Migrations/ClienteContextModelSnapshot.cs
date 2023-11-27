@@ -232,6 +232,9 @@ namespace ClientesCrud.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.ToTable("Usuario");
@@ -249,8 +252,11 @@ namespace ClientesCrud.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("DataNascimento")
-                        .HasColumnType("timestamp with time zone");
+                    b.Property<DateOnly>("DataNascimento")
+                        .HasColumnType("date");
+
+                    b.Property<int>("Genero")
+                        .HasColumnType("integer");
 
                     b.Property<long>("TelefoneId")
                         .HasColumnType("bigint");

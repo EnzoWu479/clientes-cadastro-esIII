@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClientesCrud.Context;
+using ClientesCrud.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -20,18 +21,23 @@ namespace ClientesCrud.Services
         public void ConfigureServices()
         {
             Builder.Services.AddDbContext<ClienteContext>(opt =>
-                opt.UseNpgsql(Builder.Configuration.GetConnectionString("ConexaoPadrao")));
+            {
+                opt.UseNpgsql(Builder.Configuration.GetConnectionString("ConexaoPadrao"));
+                opt.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+            });
 
-            var key = Encoding.ASCII.GetBytes(Settings.Secret.SecretKey);
+            var key = Encoding.ASCII.GetBytes(Options.SecretKey);
 
             Builder.Services.AddCors(options =>
-            {
-                options.AddPolicy(name: "_myAllowSpecificOrigins",
-                    policy =>
-                    {
-                        policy.WithOrigins("http://localhost:3000");
-                    });
-            });
+                {
+                    options.AddPolicy(name: Options.MyAllowSpecificOrigins,
+                        policy =>
+                        {
+                            policy.WithOrigins("http://localhost:3000")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+                        });
+                });
 
 
             Builder.Services.AddAuthentication(x =>

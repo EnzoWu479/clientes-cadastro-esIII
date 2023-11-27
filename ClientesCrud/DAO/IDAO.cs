@@ -12,7 +12,7 @@ namespace ClientesCrud.DAO
         public void Salvar(EntidadeDominio entidade);
         public void Alterar(EntidadeDominio entidade);
         public void Excluir(long id);
-        public EntidadeDominio[] Consultar(PaginationFilter paginationFilter);
+        public (EntidadeDominio[], int) Consultar(GetFilters filters);
         public EntidadeDominio? Consultar(long id);
     }
 }

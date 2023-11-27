@@ -5,7 +5,7 @@ import {
   InputWrapper
 } from '../../styles/StyledModels';
 import { Input } from './styled';
-import { IMask } from '../../helpers/masks';
+import { IMask } from '@ecommerce/shared';
 
 export interface InputTextProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -15,14 +15,14 @@ export interface InputTextProps
 }
 
 export const InputText = forwardRef(
-  ({ label, error, mask, ...rest }: InputTextProps, ref) => {
+  ({ label, error, mask, value, ...rest }: InputTextProps, ref) => {
     const handleOnInput = (event: any) => {
       if (mask) {
         event.currentTarget.value = mask(event.currentTarget.value);
       }
     };
-    const value = (rest.defaultValue || rest.value) as string;
-    const defaultValue = mask ? mask(value as string) : value;
+    const Realvalue = (rest.defaultValue || value) as string;
+    const defaultValue = mask ? mask(Realvalue as string) : value;
     return (
       <InputWrapper>
         {label && <InputLabelText>{label}</InputLabelText>}
@@ -30,7 +30,7 @@ export const InputText = forwardRef(
           type="text"
           error={error}
           onInput={handleOnInput}
-          defaultValue={defaultValue}
+          {...(value ? { value } : { defaultValue })}
           {...rest}
           ref={ref}
         />

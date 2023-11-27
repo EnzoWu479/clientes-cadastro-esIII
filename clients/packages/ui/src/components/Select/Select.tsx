@@ -12,7 +12,7 @@ import { useTheme } from 'styled-components';
 
 export interface IOption {
   value: string;
-  label: string;
+  label: string | number;
 }
 
 interface Props extends ReactSelectProps {
@@ -30,7 +30,7 @@ export const Select = ({ label, error, value, ...rest }: Props) => {
       <ReactSelect
         {...rest}
         value={
-          options.find(opt => opt.value === value) ?? {
+          options.find(opt => opt.value === String(value)) ?? {
             value: '',
             label: ''
           }

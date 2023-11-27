@@ -18,7 +18,7 @@ namespace ClientesCrud.DAO
         }
 
         public abstract void Alterar(EntidadeDominio entidade);
-        public abstract EntidadeDominio[] Consultar(PaginationFilter paginationFilter);
+        public abstract (EntidadeDominio[], int) Consultar(GetFilters paginationFilter);
         public abstract EntidadeDominio? Consultar(long id);
         public abstract void Excluir(long id);
         public abstract void Salvar(EntidadeDominio entidade);

@@ -1,7 +1,14 @@
+import { ClientFilter, IClient, Status } from '@/types/client';
 import { EnderecoDTO } from '@/validations/addressSchema';
-import { ClienteDTO } from '@/validations/clientSchema';
+import { changePasswordDTO } from '@/validations/changePasswordSchema';
+import {
+  CartaoCreditoOnlyDTO,
+  ClientEditDTO,
+  ClienteDTO,
+  EnderecoOnlyDTO
+} from '@/validations/clientSchema';
 import api from '@ecommerce/axios-config';
-import { masks } from '@ecommerce/shared';
+import { IPagination, IPaginationFilter, masks } from '@ecommerce/shared';
 
 const proccessAddress = (data: EnderecoDTO) => ({
   numero: data.numero,
@@ -17,7 +24,13 @@ const proccessAddress = (data: EnderecoDTO) => ({
   estado: data.estado,
   pais: data.pais
 });
-
+const proccessAddressId = (data: EnderecoDTO) => ({
+  id: data.id,
+  ...proccessAddress(data)
+});
+export interface IClientList extends IPaginationFilter {
+  filter?: ClientFilter;
+}
 export const clientService = {
   register: async (data: ClienteDTO) => {
     await api.post('/Cliente', {
@@ -25,6 +38,8 @@ export const clientService = {
       senha: data.senha,
       email: data.email,
       dataNascimento: data.dataNascimento,
+      status: Number(data.status),
+      genero: Number(data.genero),
       cpf: masks.number(data.cpf),
       telefone: {
         ddd: data.telefone.ddd,
@@ -43,6 +58,79 @@ export const clientService = {
           nome: card.bandeira
         }
       }))
+    });
+  },
+  updateClientInfo: async (data: ClientEditDTO, id: number) => {
+    await api.patch(`/Cliente/${id}`, {
+      id: data.id,
+      nome: data.nome,
+      senha: data.senha,
+      email: data.email,
+      dataNascimento: data.dataNascimento,
+      status: Number(data.status),
+      genero: Number(data.genero),
+      cpf: masks.number(data.cpf),
+      telefone: {
+        id: data.telefone.id,
+        ddd: data.telefone.ddd,
+        numero: data.telefone.numero
+      }
+    });
+  },
+  updateAddress: async (data: EnderecoOnlyDTO, id: number) => {
+    await api.patch(`/Cliente/enderecos/${id}`, {
+      id: data.id,
+      enderecosResidencial: data.enderecosResidencial.map(proccessAddressId),
+      enderecosCobranca: data.enderecosCobranca.map(proccessAddressId),
+      enderecosEntrega: data.enderecosEntrega.map(proccessAddressId)
+    });
+  },
+  updateCreditCard: async (data: CartaoCreditoOnlyDTO, id: number) => {
+    await api.patch(`/Cliente/cartao/${id}`, {
+      id: data.id,
+      cartaoCredito: data.cartaoCredito.map(card => ({
+        id: card.id,
+        preferencial: false,
+        numero: card.numero,
+        nomeTitular: card.nomeTitular,
+        validade: card.validade,
+        cvv: card.cvv,
+        bandeira: {
+          nome: card.bandeira
+        }
+      }))
+    });
+  },
+  getList: async ({ page, limit, search, filter }: IClientList) => {
+    const { data } = await api.get<IPagination<IClient>>('/Cliente', {
+      params: {
+        page: page,
+        limit: limit,
+        search: search,
+        nome: filter?.nome || null,
+        email: filter?.email || null,
+        status: filter?.status,
+        genero: filter?.genero,
+        dataNascimento: filter?.dataNascimento || null,
+        cpf: filter?.cpf ? masks.number(filter.cpf) : null,
+        telefone: filter?.telefone || null
+      }
+    });
+    return data;
+  },
+  get: async (id: number) => {
+    const { data } = await api.get<IClient>(`/Cliente/${id}`);
+    return data;
+  },
+  toggleStatus: async (id: number, status: Status) => {
+    await api.patch(`/Cliente/status/${id}`, {
+      status: Number(status)
+    });
+  },
+  changePassword: async (id: number, data: changePasswordDTO) => {
+    await api.patch(`/Cliente/senha/${id}`, {
+      // oldPassword: data.oldPassword,
+      newPassword: data.newPassword
     });
   }
 };

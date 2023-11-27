@@ -19,17 +19,25 @@ namespace ClientesCrud.Strategy
             {
                 sb.Append("\nNome inválido. ");
             }
-            if (cliente.Cpf == null)
+            if (cliente.Cpf == null || cliente.Cpf == "")
             {
                 sb.Append("\nCPF inválido. ");
             }
-            if (cliente.Email == null)
+            if (cliente.Email == null || !cliente.Email.Contains("@") || !cliente.Email.Contains(".com") || cliente.Email.Length < 5)
             {
                 sb.Append("\nEmail inválido. ");
             }
-            if (cliente.Telefone == null)
+            if (cliente.Telefone == null || cliente.Telefone.Ddd == null || cliente.Telefone.Numero == null || cliente.Telefone.Ddd.Length < 2 || cliente.Telefone.Numero.Length < 8)
             {
                 sb.Append("\nTelefone inválido. ");
+            }
+            if (cliente.Status == null)
+            {
+                sb.Append("\nStatus inválido. ");
+            }
+            if (cliente.Senha == null)
+            {
+                sb.Append("\nSenha inválida. ");
             }
             if (sb.ToString() == "") return null;
 

@@ -1,5 +1,6 @@
 using ClientesCrud.Context;
 using ClientesCrud.Services;
+using ClientesCrud.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,6 +24,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseCors("_myAllowSpecificOrigins");
+app.UseCors(Options.MyAllowSpecificOrigins);
 
 app.Run();

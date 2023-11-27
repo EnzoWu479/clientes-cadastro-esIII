@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using ClientesCrud.Models;
+using ClientesCrud.Settings;
 using Microsoft.IdentityModel.Tokens;
 
 namespace ClientesCrud.Services
@@ -15,7 +16,7 @@ namespace ClientesCrud.Services
         public static string GenerateToken(Usuario user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(Settings.Secret.SecretKey);
+            var key = Encoding.ASCII.GetBytes(Options.SecretKey);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]

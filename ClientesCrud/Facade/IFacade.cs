@@ -12,7 +12,7 @@ namespace ClientesCrud.Facade
         public void Salvar(EntidadeDominio entidade);
         public void Alterar(EntidadeDominio entidade);
         public void Excluir(long id);
-        public EntidadeDominio[] Consultar(string nameOfEntidade, PaginationFilter filter);
+        public (EntidadeDominio[], int) Consultar(string nameOfEntidade, GetFilters filter);
         public EntidadeDominio? Consultar(long id, string nameOfEntidade);
 
     }
