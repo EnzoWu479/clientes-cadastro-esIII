@@ -119,7 +119,6 @@ namespace ClientesCrud.Controllers
                 Cliente cliente1 = (Cliente?)_facade.Consultar(id, typeof(Cliente).Name) ?? throw new Exception("Cliente não encontrado");
 
                 cliente1.Nome = cliente.Nome;
-                cliente1.Senha = cliente.Senha;
                 if (cliente1.DataNascimento != null)
                 {
 
