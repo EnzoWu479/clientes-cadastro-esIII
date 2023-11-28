@@ -35,10 +35,6 @@ namespace ClientesCrud.Strategy
             {
                 sb.Append("\nStatus inválido. ");
             }
-            if (cliente.Senha == null)
-            {
-                sb.Append("\nSenha inválida. ");
-            }
             if (sb.ToString() == "") return null;
 
             return sb.ToString();

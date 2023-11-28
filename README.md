@@ -31,6 +31,8 @@ MVC
 ### Grupo: Geral
 
 - <strong>RNF0011 Tempo de resposta para consultas:</strong> Toda consulta de usuário deve ter resposta em no máximo 1 segundo.
+
+// TODO
 - <strong>RNF0012 Log de transação:</strong> Para toda operação de escrita (Inserção ou Alteração) deve ser registado data, hora, usuário responsável além de manter os dados alterados.
 
 ### Grupo: Cadastro de Clientes
@@ -39,6 +41,8 @@ MVC
 - <strong>RNF0032 Confirmação de senha:</strong> O usuário obrigatoriamente deve digitar duas vezes a mesma senha no momento do registro da mesma.
 - <strong>RNF0033 Senha criptografada:</strong> A senha deve ser criptografada
 - <strong>RF0034 Alteração apenas de endereços:</strong> O sistema deve possibilitar que endereços de entrega ou cobrança possam ser alterados ou adicionados de forma simples sem a necessidade da edição dos demais dados cadastrais.
+
+//TODO
 - <strong>RNF0035 Código de cliente:</strong> Todo cliente cadastrado deve receber um código único no sistema.
 
 ## Regras de negócio
