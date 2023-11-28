@@ -1,5 +1,11 @@
 import { InputText } from '@ecommerce/ui';
-import { CreditCardContainer, CreditCardItem, TrashButton } from './styles';
+import {
+  CardHeader,
+  CreditCardContainer,
+  CreditCardItem,
+  PreferredCard,
+  TrashButton
+} from './styles';
 import { CartaoCreditoDTO } from '@/validations/creditCardSchema';
 import { BsTrashFill } from 'react-icons/bs';
 import { IError, detectarBandeira, masks } from '@ecommerce/shared';
@@ -8,21 +14,21 @@ interface Props {
   onChange: (value: CartaoCreditoDTO) => void;
   onDelete?: () => void;
   errors?: IError<CartaoCreditoDTO>;
+  isMain: boolean;
+  defineAsMain: () => void;
 }
 export const CreditCardForm = ({
   value,
   onChange,
   onDelete,
-  errors
+  errors,
+  isMain,
+  defineAsMain
 }: Props) => {
   const handleChange = (name: keyof CartaoCreditoDTO, curValue: string) => {
     if (value) {
       const built = { ...value, [name]: curValue };
-      console.log(built);
-
       if (name === 'numero' && curValue.length >= 6) {
-        console.log(detectarBandeira(curValue).toString());
-
         built.bandeira = detectarBandeira(curValue).toString();
       }
       onChange(built);
@@ -41,9 +47,20 @@ export const CreditCardForm = ({
   };
   return (
     <CreditCardItem>
-      <TrashButton onClick={onDelete}>
-        <BsTrashFill />
-      </TrashButton>
+      <CardHeader>
+        <PreferredCard>
+          <input
+            type="radio"
+            name="preferredCard"
+            checked={isMain}
+            onChange={defineAsMain}
+          />
+          <span>{isMain ? 'Preferencial' : 'Escolher como preferencial'}</span>
+        </PreferredCard>
+        <TrashButton onClick={onDelete}>
+          <BsTrashFill />
+        </TrashButton>
+      </CardHeader>
       <CreditCardContainer>
         <div>
           <InputText

@@ -20,7 +20,9 @@ export const CreditCardListForm = ({ client }: Props) => {
     control,
     formState: { errors },
     handleSubmit,
-    reset
+    reset,
+    setValue,
+    watch
   } = useForm({
     resolver: yupResolver(cartaoCreditoOnly),
     defaultValues: {
@@ -37,6 +39,8 @@ export const CreditCardListForm = ({ client }: Props) => {
   const handleDelete = (index: number) => {
     cartoes.remove(index);
   };
+
+  console.log(errors);
 
   const onSubmit = handleSubmit(async data => {
     try {
@@ -59,8 +63,10 @@ export const CreditCardListForm = ({ client }: Props) => {
   useEffect(() => {
     if (client) {
       reset({
+        preferredCard: client.cartaoCredito.find(card => card.preferencial)?.id,
         cartaoCredito: client.cartaoCredito.map(card => ({
           id: card.id,
+          realId: card.id,
           bandeira: card.bandeira.nome,
           cvv: card.cvv,
           nomeTitular: card.nomeTitular,
@@ -81,6 +87,11 @@ export const CreditCardListForm = ({ client }: Props) => {
       <AddressList>
         {cartoes.fields.map((field, index) => {
           const onDelete = () => handleDelete(index);
+          const defineAsMain = () => {
+            setValue('preferredCard', field.realId || field.id);
+          };
+          console.log(field);
+
           return (
             <Controller
               key={field.id}
@@ -92,6 +103,11 @@ export const CreditCardListForm = ({ client }: Props) => {
                   onChange={onChange}
                   onDelete={onDelete}
                   errors={errors.cartaoCredito?.[index]}
+                  isMain={
+                    watch('preferredCard') === field.realId ||
+                    watch('preferredCard') === field.id
+                  }
+                  defineAsMain={defineAsMain}
                 />
               )}
             />

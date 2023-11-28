@@ -33,6 +33,9 @@ export interface IClientList extends IPaginationFilter {
 }
 export const clientService = {
   register: async (data: ClienteDTO) => {
+    console.log(data.cartaoCredito);
+    console.log(data.preferredCard);
+
     await api.post('/Cliente', {
       nome: data.nome,
       senha: data.senha,
@@ -49,7 +52,8 @@ export const clientService = {
       enderecosCobranca: data.enderecosCobranca.map(proccessAddress),
       enderecosEntrega: data.enderecosEntrega.map(proccessAddress),
       cartaoCredito: data.cartaoCredito.map(card => ({
-        preferencial: false,
+        preferencial:
+          data.preferredCard === card.id || data.cartaoCredito.length === 1,
         numero: card.numero,
         nomeTitular: card.nomeTitular,
         validade: card.validade,
@@ -86,11 +90,14 @@ export const clientService = {
     });
   },
   updateCreditCard: async (data: CartaoCreditoOnlyDTO, id: number) => {
+    console.log(data.cartaoCredito);
+    console.log(data.preferredCard);
     await api.patch(`/Cliente/cartao/${id}`, {
       id: data.id,
       cartaoCredito: data.cartaoCredito.map(card => ({
         id: card.id,
-        preferencial: false,
+        preferencial:
+          data.preferredCard === card.id || data.cartaoCredito.length === 1,
         numero: card.numero,
         nomeTitular: card.nomeTitular,
         validade: card.validade,

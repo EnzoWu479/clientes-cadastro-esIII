@@ -40,7 +40,9 @@ export const ClientForm = () => {
     formState: { errors },
     handleSubmit,
     register,
-    reset
+    reset,
+    setValue,
+    watch
   } = useForm({
     resolver: yupResolver(clienteSchema),
     defaultValues: {
@@ -223,6 +225,9 @@ export const ClientForm = () => {
       <CreditCardList>
         {cartoes.fields.map((field, index) => {
           const onDelete = () => handleDelete('cartaoCredito', index);
+          const defineAsMain = () => {
+            setValue('preferredCard', field.id);
+          };
           return (
             <Controller
               key={field.id}
@@ -234,6 +239,8 @@ export const ClientForm = () => {
                   onChange={onChange}
                   onDelete={onDelete}
                   errors={errors.cartaoCredito?.[index]}
+                  isMain={watch('preferredCard') === field.id}
+                  defineAsMain={defineAsMain}
                 />
               )}
             />

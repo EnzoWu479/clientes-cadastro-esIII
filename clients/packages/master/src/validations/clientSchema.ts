@@ -42,12 +42,14 @@ export type EnderecoOnlyDTO = yup.InferType<typeof enderecoOnlySchema>;
 
 export const cartaoCreditoOnly = yup.object().shape({
   id: yup.number().nullable(),
+  preferredCard: yup.mixed().nullable(),
   cartaoCredito: cartaoCreditoFieldSchema
 });
 export type CartaoCreditoOnlyDTO = yup.InferType<typeof cartaoCreditoOnly>;
 
 export const clienteSchema = yup.object().shape({
   id: yup.number().nullable(),
+  preferredCard: yup.mixed().nullable(),
   nome: yup
     .string()
     .required('Nome é obrigatório')
