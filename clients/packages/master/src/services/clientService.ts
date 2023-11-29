@@ -25,7 +25,7 @@ const proccessAddress = (data: EnderecoDTO) => ({
   pais: data.pais
 });
 const proccessAddressId = (data: EnderecoDTO) => ({
-  id: data.id,
+  ...(data.id && { id: data.id }),
   ...proccessAddress(data)
 });
 export interface IClientList extends IPaginationFilter {

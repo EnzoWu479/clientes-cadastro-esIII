@@ -158,7 +158,12 @@ namespace ClientesCrud.Controllers
 
                 foreach (CartaoCredito cartao in cliente.CartaoCredito)
                 {
-                    cartaoCredito.Add(new CartaoCredito(cartao.Id, cartao.Numero, cartao.NomeTitular, cartao.Validade, cartao.Cvv, cartao.Bandeira, cartao.Preferencial));
+                    long? curId = null;
+                    if (cartao.Id != null)
+                    {
+                        curId = cartao.Id;
+                    }
+                    cartaoCredito.Add(new CartaoCredito(curId, cartao.Numero, cartao.NomeTitular, cartao.Validade, cartao.Cvv, cartao.Bandeira, cartao.Preferencial));
                 }
 
                 cliente1.CartaoCredito = cartaoCredito;
@@ -176,6 +181,7 @@ namespace ClientesCrud.Controllers
         [HttpPatch("enderecos/{id}")]
         public IActionResult AlterarEnderecos(long id, [FromBody] ClienteDTO cliente)
         {
+            Console.WriteLine("passei 1");
             try
             {
                 Cliente cliente1 = (Cliente?)_facade.Consultar(id, typeof(Cliente).Name) ?? throw new Exception("Cliente não encontrado");
@@ -187,8 +193,13 @@ namespace ClientesCrud.Controllers
                 foreach (Endereco endereco in cliente.EnderecosResidencial)
                 {
                     TipoLogradouro tipoLogradouro = new(endereco.TipoLogradouro.Id, endereco.TipoLogradouro.Nome);
+                    long? curId = null;
+                    if (endereco.Id != null)
+                    {
+                        curId = endereco.Id;
+                    }
                     enderecosResidencial.Add(new Endereco(
-                        endereco.Id,
+                        curId,
                         tipoLogradouro,
                         endereco.Logradouro,
                         endereco.Numero,
@@ -205,8 +216,13 @@ namespace ClientesCrud.Controllers
                 foreach (Endereco endereco in cliente.EnderecosCobranca)
                 {
                     TipoLogradouro tipoLogradouro = new(endereco.TipoLogradouro.Id, endereco.TipoLogradouro.Nome);
+                    long? curId = null;
+                    if (endereco.Id != null)
+                    {
+                        curId = endereco.Id;
+                    }
                     enderecosCobranca.Add(new Endereco(
-                        endereco.Id,
+                        curId,
                         tipoLogradouro,
                         endereco.Logradouro,
                         endereco.Numero,
@@ -223,8 +239,13 @@ namespace ClientesCrud.Controllers
                 foreach (Endereco endereco in cliente.EnderecosEntrega)
                 {
                     TipoLogradouro tipoLogradouro = new(endereco.TipoLogradouro.Id, endereco.TipoLogradouro.Nome);
+                    long? curId = null;
+                    if (endereco.Id != null)
+                    {
+                        curId = endereco.Id;
+                    }
                     enderecosEntrega.Add(new Endereco(
-                        endereco.Id,
+                        curId,
                         tipoLogradouro,
                         endereco.Logradouro,
                         endereco.Numero,

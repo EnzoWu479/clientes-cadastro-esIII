@@ -22,6 +22,7 @@ namespace ClientesCrud.DAO
         {
             Cliente cliente = (Cliente)entidade;
 
+
             var clienteBanco = Context.Clientes.Find(cliente.Id) ?? throw new Exception("Cliente não encontrado");
 
             clienteBanco.Nome = cliente.Nome;
@@ -31,83 +32,38 @@ namespace ClientesCrud.DAO
             clienteBanco.Status = cliente.Status;
             clienteBanco.Genero = cliente.Genero;
             clienteBanco.DataNascimento = cliente.DataNascimento;
-            
+
             foreach (var endereco in cliente.EnderecosResidencial)
             {
-                var enderecoBanco = clienteBanco.EnderecosResidencial.FirstOrDefault(e => e.Id == endereco.Id);
-                if (enderecoBanco == null)
+                if (endereco.Id == null)
                 {
                     clienteBanco.EnderecosResidencial.Add(endereco);
-                }
-                else
-                {
-                    enderecoBanco.Cep = endereco.Cep;
-                    enderecoBanco.Logradouro = endereco.Logradouro;
-                    enderecoBanco.Numero = endereco.Numero;
-                    enderecoBanco.Observacoes = endereco.Observacoes;
-                    enderecoBanco.Bairro = endereco.Bairro;
-                    enderecoBanco.Cidade = endereco.Cidade;
-                    enderecoBanco.Estado = endereco.Estado;
-                    enderecoBanco.TipoLogradouro = endereco.TipoLogradouro;
                 }
             }
 
             foreach (var endereco in cliente.EnderecosCobranca)
             {
-                var enderecoBanco = clienteBanco.EnderecosCobranca.FirstOrDefault(e => e.Id == endereco.Id);
-                if (enderecoBanco == null)
+                if (endereco.Id == null)
                 {
                     clienteBanco.EnderecosCobranca.Add(endereco);
-                }
-                else
-                {
-                    enderecoBanco.Cep = endereco.Cep;
-                    enderecoBanco.Logradouro = endereco.Logradouro;
-                    enderecoBanco.Numero = endereco.Numero;
-                    enderecoBanco.Observacoes = endereco.Observacoes;
-                    enderecoBanco.Bairro = endereco.Bairro;
-                    enderecoBanco.Cidade = endereco.Cidade;
-                    enderecoBanco.Estado = endereco.Estado;
-                    enderecoBanco.TipoLogradouro = endereco.TipoLogradouro;
+
                 }
             }
 
             foreach (var endereco in cliente.EnderecosEntrega)
             {
-                var enderecoBanco = clienteBanco.EnderecosEntrega.FirstOrDefault(e => e.Id == endereco.Id);
-                if (enderecoBanco == null)
+                if (endereco.Id == null)
                 {
                     clienteBanco.EnderecosEntrega.Add(endereco);
-                }
-                else
-                {
-                    enderecoBanco.Cep = endereco.Cep;
-                    enderecoBanco.Logradouro = endereco.Logradouro;
-                    enderecoBanco.Numero = endereco.Numero;
-                    enderecoBanco.Observacoes = endereco.Observacoes;
-                    enderecoBanco.Bairro = endereco.Bairro;
-                    enderecoBanco.Cidade = endereco.Cidade;
-                    enderecoBanco.Estado = endereco.Estado;
-                    enderecoBanco.TipoLogradouro = endereco.TipoLogradouro;
+
                 }
             }
 
             foreach (var cartao in cliente.CartaoCredito)
             {
-                var cartaoBanco = clienteBanco.CartaoCredito.FirstOrDefault(e => e.Id == cartao.Id);
-                if (cartaoBanco == null)
+                if (cartao.Id == null)
                 {
                     clienteBanco.CartaoCredito.Add(cartao);
-                }
-                else
-                {
-                    cartaoBanco.Bandeira = cartao.Bandeira;
-                    cartaoBanco.Cvv = cartao.Cvv;
-                    cartaoBanco.NomeTitular = cartao.NomeTitular;
-                    cartaoBanco.Validade = cartao.Validade;
-                    cartaoBanco.Preferencial = cartao.Preferencial;
-                    
-                    cartaoBanco.Numero = cartao.Numero;
                 }
             }
 
