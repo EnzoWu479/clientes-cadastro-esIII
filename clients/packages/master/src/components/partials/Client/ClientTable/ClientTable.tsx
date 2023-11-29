@@ -24,6 +24,7 @@ export const ClientTable = ({ clients, onToggleStatus }: Props) => {
         <Table.Head>
           <Table.HeadRow>
             <Table.HeadCell>Nome</Table.HeadCell>
+            <Table.HeadCell>Email</Table.HeadCell>
             <Table.HeadCell>CPF</Table.HeadCell>
             <Table.HeadCell>Telefone</Table.HeadCell>
             <Table.HeadCell>Data de nascimento</Table.HeadCell>
@@ -35,6 +36,7 @@ export const ClientTable = ({ clients, onToggleStatus }: Props) => {
           {clients?.map(client => (
             <Table.BodyRow key={client.id}>
               <Table.BodyCell>{client.nome}</Table.BodyCell>
+              <Table.BodyCell>{client.email}</Table.BodyCell>
               <Table.BodyCell>{formater.cpf(client.cpf)}</Table.BodyCell>
               <Table.BodyCell
                 style={{

@@ -51,5 +51,7 @@ MVC
 - <strong>RN0022 Cadastro de endereço de entrega:</strong> Para todo cliente cadastrado é obrigatório o registro de ao menos um endereço de entrega.
 - <strong>RN0023 Composição do registro de endereços:</strong> Todo cadastro de endereços associados a clientes deve ser composto dos seguintes dados: Tipo de residência (Casa, Apartamento, etc), Tipo Logradouro, Logradouro, Número, Bairro, CEP, Cidade, Estado e País. Todos os campos anteriores são de preenchimento obrigatório. Opcionalmente pode ser preenchido um campo observações.
 - <strong>RN0024 Composição do registro de cartões de crédito:</strong> Todo cartão de crédito associado a um cliente deverá ser composto pelos seguintes campos: Nº do Cartão, Nome impresso no Cartão, Bandeira do Cartão e Código de Segurança.
+
+//TODO
 - <strong>RN0025 Bandeiras permitidas para registro de cartões de crédito:</strong> Todo cartão de crédito associado a um cliente deverá ser de alguma bandeira registrada no sistema.
 - <strong>RN0026 Dados obrigatórios para o cadastro de um cliente:</strong> Para todo cliente cadastrado é obrigatório o cadastro dos seguintes dados: Gênero, Nome, Data de Nascimento, CPF, Telefone (deve ser composto pelo tipo, DDD e número), e- []mail, senha, endereço residencial.

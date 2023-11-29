@@ -39,10 +39,12 @@ namespace ClientesCrud.Facade
             ;
             regrasCliente.Add(new EnderecoValidator());
             regrasClienteSalvar.Add(new EnderecoValidator());
+            regrasCliente.Add(new GerarLogTransacao());
+            regrasClienteSalvar.Add(new GerarLogTransacao());
             
             regrasClienteSalvar.Add(new SenhaValidator());
             regrasClienteSalvar.Add(new EncriptarSenha());
-            // regrasCliente.Add(new GerarLogTransacao(new LogDAO(context)));
+
 
             _validators.Add(typeof(Cliente).Name, regrasCliente);
             _validatorsRegister.Add(typeof(Cliente).Name, regrasClienteSalvar);

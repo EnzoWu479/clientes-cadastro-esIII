@@ -11,7 +11,6 @@ namespace ClientesCrud.Context
         }
 
         public DbSet<Cliente> Clientes { get; set; }
-        public DbSet<Log> Logs { get; set; }
 
     }
 }

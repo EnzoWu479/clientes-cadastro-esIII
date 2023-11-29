@@ -15,7 +15,7 @@ namespace ClientesCrud.Models
             if (id != null)
             {
                 this.Id = (long)id;
-            }
+            } 
         }
         /// <summary> 
         /// Empty constructor for EF

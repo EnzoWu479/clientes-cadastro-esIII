@@ -108,6 +108,8 @@ export const AddressListForm = ({ client }: Props) => {
         break;
     }
   };
+  console.log(errors);
+
   useEffect(() => {
     if (client) {
       reset({
@@ -147,7 +149,7 @@ export const AddressListForm = ({ client }: Props) => {
         })}
       </AddressList>
       <SectionTitle>Endereços de cobrança</SectionTitle>
-      <ErrorMessage>{errors.enderecosCobranca?.message}</ErrorMessage>
+      <ErrorMessage>{errors.enderecosCobranca?.root?.message}</ErrorMessage>
       <AddButton onClick={() => handleAdd('cobranca')}>
         <AiOutlinePlus /> Adicionar endereço
       </AddButton>{' '}
@@ -172,7 +174,7 @@ export const AddressListForm = ({ client }: Props) => {
         })}
       </AddressList>
       <SectionTitle>Endereços de entrega</SectionTitle>
-      <ErrorMessage>{errors.enderecosEntrega?.message}</ErrorMessage>
+      <ErrorMessage>{errors.enderecosEntrega?.root?.message}</ErrorMessage>
       <AddButton onClick={() => handleAdd('entrega')}>
         <AiOutlinePlus /> Adicionar endereço
       </AddButton>

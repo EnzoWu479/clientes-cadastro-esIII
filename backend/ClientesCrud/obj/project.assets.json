@@ -3108,11 +3108,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Programação\\Projetos\\clientes-cadastro-esIII\\ClientesCrud\\ClientesCrud.csproj",
+      "projectUniqueName": "D:\\Programação\\Projetos\\clientes-cadastro-esIII\\backend\\ClientesCrud\\ClientesCrud.csproj",
       "projectName": "ClientesCrud",
-      "projectPath": "D:\\Programação\\Projetos\\clientes-cadastro-esIII\\ClientesCrud\\ClientesCrud.csproj",
+      "projectPath": "D:\\Programação\\Projetos\\clientes-cadastro-esIII\\backend\\ClientesCrud\\ClientesCrud.csproj",
       "packagesPath": "C:\\Users\\Enzo Wu\\.nuget\\packages\\",
-      "outputPath": "D:\\Programação\\Projetos\\clientes-cadastro-esIII\\ClientesCrud\\obj\\",
+      "outputPath": "D:\\Programação\\Projetos\\clientes-cadastro-esIII\\backend\\ClientesCrud\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Enzo Wu\\AppData\\Roaming\\NuGet\\NuGet.Config",

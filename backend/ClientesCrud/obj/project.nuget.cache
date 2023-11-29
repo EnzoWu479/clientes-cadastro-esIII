@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "G1eYofktBq4qyqNXQaVpjMW1+7DYjvZuW/LWbsqEGt01mZu5190mWinhva1rcAjmuKcFNKUN4Zc6YDUj/DlTGw==",
+  "dgSpecHash": "nOClrTLXiwp7pAGPw1YOyABhwNXCa0e0Q50uVylIo0Dqo9jAdpeVDJ3qZPrPQB7GX2/6M8zF41Run47pE+P87A==",
   "success": true,
-  "projectFilePath": "D:\\Programação\\Projetos\\clientes-cadastro-esIII\\ClientesCrud\\ClientesCrud.csproj",
+  "projectFilePath": "D:\\Programação\\Projetos\\clientes-cadastro-esIII\\backend\\ClientesCrud\\ClientesCrud.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Enzo Wu\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Enzo Wu\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
