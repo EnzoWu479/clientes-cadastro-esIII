@@ -23,7 +23,12 @@ namespace ClientesCrud.DAO
             Cliente cliente = (Cliente)entidade;
 
 
-            var clienteBanco = Context.Clientes.Find(cliente.Id) ?? throw new Exception("Cliente não encontrado");
+            var clienteBanco = Context.Clientes.Include("Telefone")
+            .Include(x => x.EnderecosResidencial).ThenInclude(x => x.TipoLogradouro)
+            .Include(x => x.EnderecosCobranca).ThenInclude(x => x.TipoLogradouro)
+            .Include(x => x.EnderecosEntrega).ThenInclude(x => x.TipoLogradouro)
+            .Include(x => x.CartaoCredito)
+            .ThenInclude(x => x.Bandeira).FirstOrDefault(c => c.Id == cliente.Id) ?? throw new Exception("Cliente não encontrado");
 
             clienteBanco.Nome = cliente.Nome;
             clienteBanco.Cpf = cliente.Cpf;
@@ -32,6 +37,22 @@ namespace ClientesCrud.DAO
             clienteBanco.Status = cliente.Status;
             clienteBanco.Genero = cliente.Genero;
             clienteBanco.DataNascimento = cliente.DataNascimento;
+
+            Console.WriteLine("AQUIIIIIIIIIIIIII" + clienteBanco.EnderecosResidencial);
+
+            clienteBanco.EnderecosResidencial
+            .FindAll(x => !cliente.EnderecosResidencial.Any(y => y.Id == x.Id))
+            .ForEach(x => Context.Remove(x));
+            clienteBanco.EnderecosCobranca
+            .FindAll(x => !cliente.EnderecosCobranca.Any(y => y.Id == x.Id))
+            .ForEach(x => Context.Remove(x));
+            clienteBanco.EnderecosEntrega
+            .FindAll(x => !cliente.EnderecosEntrega.Any(y => y.Id == x.Id))
+            .ForEach(x => Context.Remove(x));
+            clienteBanco.CartaoCredito
+            .FindAll(x => !cliente.CartaoCredito.Any(y => y.Id == null || y.Id == x.Id))
+            .ForEach(x => Context.Remove(x));
+
 
             foreach (var endereco in cliente.EnderecosResidencial)
             {
