@@ -38,8 +38,6 @@ namespace ClientesCrud.DAO
             clienteBanco.Genero = cliente.Genero;
             clienteBanco.DataNascimento = cliente.DataNascimento;
 
-            Console.WriteLine("AQUIIIIIIIIIIIIII" + clienteBanco.EnderecosResidencial);
-
             clienteBanco.EnderecosResidencial
             .FindAll(x => !cliente.EnderecosResidencial.Any(y => y.Id == x.Id))
             .ForEach(x => Context.Remove(x));
@@ -50,44 +48,21 @@ namespace ClientesCrud.DAO
             .FindAll(x => !cliente.EnderecosEntrega.Any(y => y.Id == x.Id))
             .ForEach(x => Context.Remove(x));
             clienteBanco.CartaoCredito
-            .FindAll(x => !cliente.CartaoCredito.Any(y => y.Id == null || y.Id == x.Id))
+            .FindAll(x => !cliente.CartaoCredito.Any(y => y.Id == x.Id))
             .ForEach(x => Context.Remove(x));
 
-
-            foreach (var endereco in cliente.EnderecosResidencial)
-            {
-                if (endereco.Id == null)
-                {
-                    clienteBanco.EnderecosResidencial.Add(endereco);
-                }
-            }
-
-            foreach (var endereco in cliente.EnderecosCobranca)
-            {
-                if (endereco.Id == null)
-                {
-                    clienteBanco.EnderecosCobranca.Add(endereco);
-
-                }
-            }
-
-            foreach (var endereco in cliente.EnderecosEntrega)
-            {
-                if (endereco.Id == null)
-                {
-                    clienteBanco.EnderecosEntrega.Add(endereco);
-
-                }
-            }
-
-            foreach (var cartao in cliente.CartaoCredito)
-            {
-                if (cartao.Id == null)
-                {
-                    clienteBanco.CartaoCredito.Add(cartao);
-                }
-            }
-
+            cliente.EnderecosResidencial
+                .FindAll(x => x.Id == null)
+                .ForEach(x => clienteBanco.EnderecosResidencial.Add(x));
+            cliente.EnderecosCobranca
+                .FindAll(x => x.Id == null)
+                .ForEach(x => clienteBanco.EnderecosCobranca.Add(x));
+            cliente.EnderecosEntrega
+                .FindAll(x => x.Id == null)
+                .ForEach(x => clienteBanco.EnderecosEntrega.Add(x));
+            cliente.CartaoCredito
+                .FindAll(x => x.Id == null)
+                .ForEach(x => clienteBanco.CartaoCredito.Add(x));
 
             Context.Clientes.Update(cliente);
             Context.SaveChanges();
