@@ -1,9 +1,16 @@
 # CRUD Cadastro de clientes
 
-Projeto desenvolvido para a aula de Engenharia de Software III sob orientação do professor Rodrigo
+Projeto desenvolvido para a aula de Engenharia de Software III sob orientação do professor Rodrigo Rocha
 
 Diagrama de classes:
 https://yuml.me/enzowu479/cadastro-cliente.svg
+
+## Ferramentas
+
+- .Net
+- Entity Framework
+- React
+- Typescript
 
 ## Padrão de arquitetura
 
@@ -13,6 +20,7 @@ MVC
 
 - DAO
 - Fachada
+- Strategy
 
 ## Requisitos funcionais
 
