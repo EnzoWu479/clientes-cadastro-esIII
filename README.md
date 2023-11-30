@@ -3,7 +3,8 @@
 Projeto desenvolvido para a aula de Engenharia de Software III sob orientação do professor Rodrigo Rocha
 
 Diagrama de classes:
-https://yuml.me/enzowu479/cadastro-cliente.svg
+<img src="https://yuml.me/enzowu479/cadastro-cliente.svg" style="width: 100%; background-color: #fff; padding: 16px">
+
 
 ## Ferramentas
 
